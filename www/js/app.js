@@ -1,8 +1,33 @@
 // This is a JavaScript file
 // App module
 let app = {
+  lang: null,
   init: function(){
-     
+      // initSounds();
+
+      const langStr = window.navigator.language;
+
+      //On détecte la langue de l'appareil
+      if(langStr.substr(0, 2) == 'fr'){
+          app.lang = 'fr';
+      }
+      else{
+          app.lang = 'en';
+      }
+
+      //On d辿finit le titre de l'appli
+      document.getElementById('app-title').textContent = texts.appTitle[app.lang];
+
+      screens.forEach(function(screen) {
+        //On ajoute les tabs
+        document.getElementById("tabs-container").innerHTML += 
+        '<li class="tab">' +
+            '<a href="#' + screen.containerDiv + '"  id="' + screen.containerDiv + '-tab">' + screen.title[app.lang] + '</a>' +
+        '</li>';
+      });
+
+      let elem = document.querySelector('.tabs'); 
+      let instance = M.Tabs.init(elem, {});
   }
 }
 
