@@ -27,6 +27,7 @@ let app = {
       });
 
       const settings = new Settings(app.lang);
+      const training = new Training(app.lang, settings);
 
       let elem = document.querySelector('.tabs'); 
       let instance = M.Tabs.init(elem, {});
