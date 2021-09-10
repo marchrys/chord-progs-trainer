@@ -68,5 +68,9 @@ class Settings {
   saveData() {
     localStorage.setItem(this.levelKey, JSON.stringify(this.selectedLevel));
   }
+
+  getSelectedLevel() {
+    return this.selectedLevel;
+  }
 }
 

@@ -6,7 +6,8 @@ const levels = [
       fr: 'Tonique, sous-dominante et dominante'
     },
     order: 1,
-    inLite: true
+    inLite: true,
+    chordIds: [1, 4, 5],
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ const levels = [
       fr: 'Sus-dominante'
     },
     order: 2,
-    inLite: false
+    inLite: false,
+    chordIds: [1, 4, 5, 6],
   },
 ];
 
