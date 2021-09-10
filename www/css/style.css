@@ -1,3 +1,22 @@
+@font-face {
+    font-family: poppins;
+    src: url('../fonts/poppins/Poppins-Regular.ttf')  format('truetype');
+}
+
+:root {
+    --screen-bg-color: #C7AC92;
+    --main-bg-color: #A44A3F;
+    --danger-color: red;
+    background-color: var(--screen-bg-color);
+    font-family: poppins;
+    font-size: 17px;
+}
+
+.nav-content, a.btn, div.collapsible-header{
+    background-color: var(--main-bg-color);
+    color: white;
+}
+
 .nav-title {
   font-size: 1.8rem !important;
   padding: 15px !important;
@@ -6,5 +25,36 @@
 .container {
     margin-top: 30px !important;
     margin-bottom: 30px !important;
+}
+
+/* Selects text color */
+.dropdown-content li > a, .dropdown-content li > span, .input-field input[type=text], .input-field input[type=text]:focus {
+    color: black !important;
+    /* padding: 25px !important; */
+}
+
+/* Selects bottom border color */
+/* label underline focus color */
+.input-field input[type=text]:focus {
+	  border-bottom: 1px solid black !important;
+    box-shadow: 0 1px 0 0 black !important;
+}
+
+/* Selects bottom border color */
+/* label underline focus color */
+.input-field input[type=text], .input-field input[type=text]:focus {
+    /* padding: 40px 0 40px 0 !important;
+    line-height: 4em !important; */
+	  border-bottom: 1px solid black !important;
+    box-shadow: 0 1px 0 0 black !important;
+}
+
+div.input-field {
+  margin-bottom: 60px !important;
+}
+
+/* Couleur de texte du label des select */
+div.input-field label {
+  color: black;
 }
 

@@ -15,7 +15,7 @@ const levels = [
       fr: 'Sus-dominante'
     },
     order: 2,
-    inLite: true
+    inLite: false
   },
 ];
 

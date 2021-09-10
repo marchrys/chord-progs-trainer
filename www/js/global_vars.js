@@ -1,4 +1,4 @@
 const globalVars = {
-  version: 'Lite'
+  version: 'Full'
 };
 
