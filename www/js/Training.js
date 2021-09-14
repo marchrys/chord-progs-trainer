@@ -58,17 +58,22 @@ class Training {
   createGui() {
     this.containerDiv.innerHTML = '';
 
-    this.containerDiv.innerHTML += `<div class="row col s11 offset-s1"></div>`;
-    const selectsRow = this.containerDiv.querySelector('.row');
+    this.containerDiv.innerHTML += `<div class="row selects-row col s12"></div>`;
+    this.containerDiv.innerHTML += `<div class="row buttons-row"></div>`;
+
+    const selectsRow = this.containerDiv.querySelector('.selects-row');
+    const buttonsRow = this.containerDiv.querySelector('.buttons-row');
 
     //Ajout des selects pour les réponses
     for(let i=1; i<=this.phraseChordsNum; i++) {
       selectsRow.innerHTML += 
-        `<div class="input-field col s2">
+        `<div class="input-field select-container col s2">
           <select class="answer-select">
           </select>
         </div>`;
     }
+    const selectContainers = this.containerDiv.querySelectorAll('.select-container');
+    selectContainers[0].classList.add('offset-s1');
 
     this.answerSelects = this.containerDiv.querySelectorAll('.answer-select');
     this.answerSelects.forEach(function(select) {
@@ -83,6 +88,11 @@ class Training {
     //     select.appendChild(option);
     //   }.bind(this));
     // }.bind(this));
+
+    buttonsRow.innerHTML += `<a class="waves-effect waves-light btn col s12 md6 action-btn">New question</a>`;
+    buttonsRow.innerHTML += `<a class="waves-effect waves-light btn col s12 md6 offset-md2 action-btn">Listen again</a>`;
+    buttonsRow.innerHTML += `<a class="waves-effect waves-light btn col s12 md6 action-btn">Check answers</a>`;
+    buttonsRow.innerHTML += `<a class="waves-effect waves-light btn col s12 md6 offset-md2 action-btn">Display right answers</a>`;
 
     this.initGuiComponents();
   }
