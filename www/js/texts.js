@@ -6,6 +6,10 @@ const texts = {
   level: {
     en: 'Level',
     fr: 'Niveau'
+  },
+  preloader: {
+    en: 'Please wait while loading sounds...',
+    fr: 'Veuillez patienter pendant le chargement des sons...'
   }
 };
 
