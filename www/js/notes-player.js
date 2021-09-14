@@ -59,7 +59,7 @@ var soundNoteNames = [
 const sounds = [];
 
 soundNoteNames.forEach(function(soundNoteName) {
-  sounds.push(soundNoteName + '.mp3');
+  sounds.push('sounds/' + soundNoteName + '.mp3');
 });
 
 var context; 
@@ -140,6 +140,7 @@ function finishedLoadingSound(bufferList) {
     C6 = bufferList[48];
 
     allSoundsLoaded = true;
+    console.log('all sounds loaded!');
 } 
 
 function playSound(buffer, time) {

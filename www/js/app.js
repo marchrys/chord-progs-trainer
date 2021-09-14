@@ -3,7 +3,7 @@
 let app = {
   lang: null,
   init: function(){
-      // initSounds();
+      initSounds();
 
       const langStr = window.navigator.language;
 
