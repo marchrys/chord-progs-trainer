@@ -6,6 +6,7 @@ class Training {
     this.chords = [];
     this.phraseChordsNum = 5;
     this.answerSelects = null;
+    this.actionButtons = null;
 
     this.defineChords();
     //Au premier chargement, on affiche le preloader
@@ -90,25 +91,43 @@ class Training {
     this.containerDiv.innerHTML += 
     `<div class="row buttons-row col s12 valign-wrapper">
       <a class="waves-effect waves-light btn col s5 action-btn"> 
-        test super très long
+        ${texts.newQuest[this.lang]}
       </a>
       <a class="waves-effect waves-light btn col s5 offset-s2 action-btn"> 
-         test 
+         ${texts.listenAgain[this.lang]} 
       </a>
     </div>`;
 
     this.containerDiv.innerHTML += 
     `<div class="row buttons-row col s12 valign-wrapper">
       <a class="waves-effect waves-light btn col s5 action-btn"> 
-        test super très long
+        ${texts.checkAns[this.lang]}
       </a>
-      <a class="waves-effect waves-light btn col s5 offset-s2 action-btn"> 
-        test 
+      <a class="waves-effect waves-light btn col s5 offset-s2 action-btn">
+        ${texts.displayRight[this.lang]} 
       </a>
     </div>`;
-  
 
+    this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
+    this.setButtonsState([false, true, true, true]);
+
+    this.actionButtons[0].addEventListener('click', this.generateQuestion);
+  
     this.initGuiComponents();
+  }
+
+  setButtonsState(states) {
+    this.actionButtons.forEach(function(button, index) {
+      if(states[index]) {
+        button.classList.add('disabled');
+      } else {
+        button.classList.remove('disabled');
+      }
+    }.bind(this));
+  }
+
+  generateQuestion() {
+    alert('ok!');
   }
 }
 
