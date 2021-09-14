@@ -58,11 +58,8 @@ class Training {
   createGui() {
     this.containerDiv.innerHTML = '';
 
-    this.containerDiv.innerHTML += `<div class="row selects-row col s12"></div>`;
-    this.containerDiv.innerHTML += `<div class="row buttons-row"></div>`;
-
+    this.containerDiv.innerHTML += `<div class="row selects-row"></div>`;
     const selectsRow = this.containerDiv.querySelector('.selects-row');
-    const buttonsRow = this.containerDiv.querySelector('.buttons-row');
 
     //Ajout des selects pour les réponses
     for(let i=1; i<=this.phraseChordsNum; i++) {
@@ -89,10 +86,27 @@ class Training {
     //   }.bind(this));
     // }.bind(this));
 
-    buttonsRow.innerHTML += `<a class="waves-effect waves-light btn col s12 md6 action-btn">New question</a>`;
-    buttonsRow.innerHTML += `<a class="waves-effect waves-light btn col s12 md6 offset-md2 action-btn">Listen again</a>`;
-    buttonsRow.innerHTML += `<a class="waves-effect waves-light btn col s12 md6 action-btn">Check answers</a>`;
-    buttonsRow.innerHTML += `<a class="waves-effect waves-light btn col s12 md6 offset-md2 action-btn">Display right answers</a>`;
+   
+    this.containerDiv.innerHTML += 
+    `<div class="row buttons-row col s12 valign-wrapper">
+      <a class="waves-effect waves-light btn col s5 action-btn"> 
+        test super très long
+      </a>
+      <a class="waves-effect waves-light btn col s5 offset-s2 action-btn"> 
+         test 
+      </a>
+    </div>`;
+
+    this.containerDiv.innerHTML += 
+    `<div class="row buttons-row col s12 valign-wrapper">
+      <a class="waves-effect waves-light btn col s5 action-btn"> 
+        test super très long
+      </a>
+      <a class="waves-effect waves-light btn col s5 offset-s2 action-btn"> 
+        test 
+      </a>
+    </div>`;
+  
 
     this.initGuiComponents();
   }
