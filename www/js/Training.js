@@ -39,7 +39,6 @@ class Training {
   checkSoundsLoad() {
     const soundsLoad = setInterval(function() {
       if(allSoundsLoaded) {
-        console.log('ok');
         this.createGui();
         // this.createElementNotes();
         // this.setSelectedOptions();
@@ -111,7 +110,7 @@ class Training {
     this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
     this.setButtonsState([false, true, true, true]);
 
-    this.actionButtons[0].addEventListener('click', this.generateQuestion);
+    this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
   
     this.initGuiComponents();
   }
@@ -127,7 +126,42 @@ class Training {
   }
 
   generateQuestion() {
-    alert('ok!');
+    const scaleNotes = [];
+    let hasNullNote = false;
+    const randScale = scales[Math.floor(Math.random()*scales.length)];
+    const randTonic = notes[Math.floor(Math.random()*21)];
+    
+    scaleNotes.push(randTonic);
+    for(let i=0; i<randScale.intervals.length; i++) {
+      const nextNote = notes.find(note => note.id == randTonic.id + randScale.intervals[i]);
+      if(nextNote == null) {
+        hasNullNote = true;
+        break;
+      } else {
+        scaleNotes.push(nextNote);
+      }
+    }
+
+    for(let i=1; i<=2; i++) {
+      for(let k=0; k<=randScale.intervals.length; k++) {
+        const newNote = notes.find(note => note.id == scaleNotes[k].id + 31*i);
+        scaleNotes.push(newNote);
+      }
+    }
+       
+    if(hasNullNote) {
+      return null;
+    } else {
+      return scaleNotes;
+    }
+  }
+
+  handleNewQuestionClick() {
+    let scaleNotes = null;
+    while(scaleNotes == null) {
+      scaleNotes = this.generateQuestion();
+    }
+    console.log(JSON.stringify(scaleNotes));
   }
 }
 
