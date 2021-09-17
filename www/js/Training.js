@@ -125,7 +125,7 @@ class Training {
     }.bind(this));
   }
 
-  generateQuestion() {
+  generateScale() {
     const scaleNotes = [];
     let hasNullNote = false;
     const randScale = scales[Math.floor(Math.random()*scales.length)];
@@ -156,12 +156,30 @@ class Training {
     }
   }
 
+  selectRandPhrase(scaleNotes) {
+    const phrases = this.settings.selectedLevel.phrases;
+    const randPhrase = Utilities.getRandomArrayItem(phrases);
+    let phraseChords = [];
+    
+    randPhrase.forEach(function(chordId) {
+      const nextChord = chords.find(chord => chord.id == chordId);
+      const chordNotes = [];
+      nextChord.scaleDegrees.forEach(function(degree) {
+        chordNotes.push(scaleNotes[degree-1].id);
+      });
+ 
+      phraseChords.push(chordNotes);
+      
+    });
+    console.log(JSON.stringify(phraseChords));
+  }
+
   handleNewQuestionClick() {
     let scaleNotes = null;
     while(scaleNotes == null) {
-      scaleNotes = this.generateQuestion();
+      scaleNotes = this.generateScale();
     }
-    console.log(JSON.stringify(scaleNotes));
+    this.selectRandPhrase(scaleNotes);
   }
 }
 
