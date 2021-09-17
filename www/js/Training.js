@@ -4,6 +4,7 @@ class Training {
     this.containerDiv = document.getElementById('training');
     this.settings = settings;
     this.chords = [];
+    this.randScale = null;
     this.phraseChordsNum = 5;
     this.answerSelects = null;
     this.actionButtons = null;
@@ -128,12 +129,12 @@ class Training {
   generateScale() {
     const scaleNotes = [];
     let hasNullNote = false;
-    const randScale = scales[Math.floor(Math.random()*scales.length)];
+    this.randScale = scales[Math.floor(Math.random()*scales.length)];
     const randTonic = notes[Math.floor(Math.random()*21)];
     
     scaleNotes.push(randTonic);
-    for(let i=0; i<randScale.intervals.length; i++) {
-      const nextNote = notes.find(note => note.id == randTonic.id + randScale.intervals[i]);
+    for(let i=0; i<this.randScale.intervals.length; i++) {
+      const nextNote = notes.find(note => note.id == randTonic.id + this.randScale.intervals[i]);
       if(nextNote == null) {
         hasNullNote = true;
         break;
@@ -143,7 +144,7 @@ class Training {
     }
 
     for(let i=1; i<=2; i++) {
-      for(let k=0; k<=randScale.intervals.length; k++) {
+      for(let k=0; k<=this.randScale.intervals.length; k++) {
         const newNote = notes.find(note => note.id == scaleNotes[k].id + 31*i);
         scaleNotes.push(newNote);
       }
@@ -165,13 +166,22 @@ class Training {
       const nextChord = chords.find(chord => chord.id == chordId);
       const chordNotes = [];
       nextChord.scaleDegrees.forEach(function(degree) {
-        chordNotes.push(scaleNotes[degree-1].id);
+        chordNotes.push(scaleNotes[degree-1]);
       });
  
       phraseChords.push(chordNotes);
       
     });
-    console.log(JSON.stringify(phraseChords));
+
+    // const phraseNoteIds = [];
+    // phraseChords.forEach(function(chord) {
+    //   const chordNoteIds = [];
+    //   chord.forEach(function(note) {
+    //      chordNoteIds.push(note.id);
+    //   });
+    //   phraseNoteIds.push(chordNoteIds);
+    // });
+    // console.log(JSON.stringify(phraseNoteIds));
   }
 
   handleNewQuestionClick() {
