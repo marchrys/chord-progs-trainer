@@ -145,8 +145,16 @@ function finishedLoadingSound(bufferList) {
 
 function playSound(buffer, time) {
     var source = context.createBufferSource();
+    // Create a gain node.
+    var gainNode = context.createGain();
+    
     source.buffer = buffer;
-    source.connect(context.destination);
+    source.connect(gainNode);
+    // Connect the gain node to the destination.
+    gainNode.connect(context.destination);
+    // source.connect(context.destination);
+    // Reduce the volume.
+    gainNode.gain.value = 0.2;
     source.start(context.currentTime + time);
 }
 
