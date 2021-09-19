@@ -173,15 +173,15 @@ class Training {
       
     });
 
-    // const phraseNoteIds = [];
-    // phraseChords.forEach(function(chord) {
-    //   const chordNoteIds = [];
-    //   chord.forEach(function(note) {
-    //      chordNoteIds.push(note.id);
-    //   });
-    //   phraseNoteIds.push(chordNoteIds);
-    // });
-    // console.log(JSON.stringify(phraseNoteIds));
+    const phraseNoteIds = [];
+    phraseChords.forEach(function(chord) {
+      const chordNoteIds = [];
+      chord.forEach(function(note) {
+         chordNoteIds.push(note.id);
+      });
+      phraseNoteIds.push(chordNoteIds);
+    });
+    console.log(JSON.stringify(phraseNoteIds));
 
     const sounds = [
       null,
@@ -193,7 +193,14 @@ class Training {
       C6
     ];
 
-    playSound(sounds[6], 0);
+    let noteOnTime = 0;
+    phraseNoteIds.forEach(function(chord, index) {
+      noteOnTime = index*1.25;
+
+      chord.forEach(function(noteId) {
+        playSound(sounds[noteId], noteOnTime);
+      }.bind(this));
+    }.bind(this));
   }
 
   handleNewQuestionClick() {
