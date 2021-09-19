@@ -182,6 +182,18 @@ class Training {
     //   phraseNoteIds.push(chordNoteIds);
     // });
     // console.log(JSON.stringify(phraseNoteIds));
+
+    const sounds = [
+      null,
+      C2, null, Db2, Db2, null, D2, null, Eb2, Eb2, null, E2, E2, F2, F2, null, Gb2, Gb2, null, G2, null, Ab2, Ab2, null, A2, null, Bb2, Bb2, null, B2, B2, C3,
+      C3, null, Db3, Db3, null, D3, null, Eb3, Eb3, null, E3, E3, F3, F3, null, Gb3, Gb3, null, G3, null, Ab3, Ab3, null, A3, null, Bb3, Bb3, null, B3, B3, C4,  
+      C4, null, Db4, Db4, null, D4, null, Eb4, Eb4, null, E4, E4, F4, F4, null, Gb4, Gb4, null, G4, null, Ab4, Ab4, null, A4, null, Bb4, Bb4, null, B4, B4, C5,
+      C5, null, Db5, Db5, null, D5, null, Eb5, Eb5, null, E5, E5, F5, F5, null,Gb5, Gb5, null, G5, null, Ab5, Ab5, null, 
+      A5, null, Bb5, Bb5, null, B5, B5, C6,
+      C6
+    ];
+
+    playSound(sounds[6], 0);
   }
 
   handleNewQuestionClick() {
