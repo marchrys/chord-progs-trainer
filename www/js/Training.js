@@ -6,6 +6,7 @@ class Training {
     this.chords = [];
     this.randScale = null;
     this.phraseChordsNum = 5;
+    this.phraseNoteIds = [];
     this.answerSelects = null;
     this.actionButtons = null;
 
@@ -112,6 +113,7 @@ class Training {
     this.setButtonsState([false, true, true, true]);
 
     this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
+    this.actionButtons[1].addEventListener('click', this.playQuestion.bind(this));
   
     this.initGuiComponents();
   }
@@ -173,16 +175,18 @@ class Training {
       
     });
 
-    const phraseNoteIds = [];
+    this.phraseNoteIds = [];
     phraseChords.forEach(function(chord) {
       const chordNoteIds = [];
       chord.forEach(function(note) {
          chordNoteIds.push(note.id);
       });
-      phraseNoteIds.push(chordNoteIds);
-    });
-    console.log(JSON.stringify(phraseNoteIds));
+      this.phraseNoteIds.push(chordNoteIds);
+    }.bind(this));
+    console.log(JSON.stringify(this.phraseNoteIds));
+  }
 
+  playQuestion() {
     const sounds = [
       null,
       C2, null, Db2, Db2, null, D2, null, Eb2, Eb2, null, E2, E2, F2, F2, null, Gb2, Gb2, null, G2, null, Ab2, Ab2, null, A2, null, Bb2, Bb2, null, B2, B2, C3,
@@ -192,9 +196,13 @@ class Training {
       A5, null, Bb5, Bb5, null, B5, B5, C6,
       C6
     ];
+    
+    stopAllSounds();
+    //Cette variable a été déclarée dans le fichier notes-player.js
+    soundSources = [];
 
     let noteOnTime = 0;
-    phraseNoteIds.forEach(function(chord, index) {
+    this.phraseNoteIds.forEach(function(chord, index) {
       noteOnTime = index*1.25;
 
       chord.forEach(function(noteId) {
@@ -209,6 +217,9 @@ class Training {
       scaleNotes = this.generateScale();
     }
     this.selectRandPhrase(scaleNotes);
+    this.playQuestion();
+
+    this.setButtonsState([true, false, false, true]);
   }
 }
 
