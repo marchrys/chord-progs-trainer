@@ -4,10 +4,11 @@ class Training {
     this.containerDiv = document.getElementById('training');
     this.settings = settings;
     this.chords = [];
-    this.randScale = null;
+    this.randScale = scales[1];
     this.randPhrase = null;
     this.phraseChordsNum = 5;
     this.phraseNoteIds = [];
+    this.answers = [];
     this.answerSelects = null;
     this.actionButtons = null;
 
@@ -56,8 +57,6 @@ class Training {
     //Initialisation des selects
     const elems = document.querySelectorAll('select');
     const instances = M.FormSelect.init(elems, {});
-
-    console.log('init');
   }
 
   createGui() {
@@ -66,65 +65,26 @@ class Training {
     this.containerDiv.innerHTML += `<div class="row selects-row"></div>`;
     const selectsRow = this.containerDiv.querySelector('.selects-row');
 
-    //Ajout des selects pour les réponses
     for(let i=1; i<=this.phraseChordsNum; i++) {
-      selectsRow.innerHTML +=
-        `<div class="input-field select-container col s2">
-          <select class="answer-select">
-          </select>
-        </div>`;
+    selectsRow.innerHTML +=
+      `<div class="input-field col s2">
+        <select class="answer-select">
+        </select>
+        <label></label>
+      </div>`;
     }
-    const selectContainers = this.containerDiv.querySelectorAll('.select-container');
-    selectContainers[0].classList.add('offset-s1');
 
-    this.answerSelects = this.containerDiv.querySelectorAll('.answer-select');
+    this.answerSelects = document.querySelectorAll('.answer-select');
+    
+    this.updateAnswerSelects();
+    
+
     this.answerSelects.forEach(function(select) {
-      select.disabled = true;
+      select.addEventListener('change', this.handleSelectChange.bind(this));
     }.bind(this));
-    if(this.randScale != null) {
-      this.updateAnswerSelects();
-      this.answerSelects.forEach(function(select) {
-        select.disabled = false;
-      }.bind(this));
-    }
+    
 
-    this.containerDiv.innerHTML += `<div class="row feedbacks-row"></div>`;
-    const feedbacksRow = this.containerDiv.querySelector('.feedbacks-row');
-    //Ajout des div pour les retours
-    for(let i=1; i<=this.phraseChordsNum; i++) {
-      feedbacksRow.innerHTML +=
-        `<div class="feedback col s2 green-text text-darken-2">
-           <i class="fas fa-check"></i>
-        </div>`;
-    }
-    const feedbacks = document.querySelectorAll('.feedback');
-    feedbacks[0].classList.add('offset-s1');
-
-    this.containerDiv.innerHTML +=
-    `<div class="row buttons-row col s12 valign-wrapper">
-      <a class="waves-effect waves-light btn col s5 action-btn">
-        ${texts.newQuest[this.lang]}
-      </a>
-      <a class="waves-effect waves-light btn col s5 offset-s2 action-btn">
-         ${texts.listenAgain[this.lang]}
-      </a>
-    </div>`;
-
-    this.containerDiv.innerHTML +=
-    `<div class="row buttons-row col s12 valign-wrapper">
-      <a class="waves-effect waves-light btn col s5 action-btn">
-        ${texts.checkAns[this.lang]}
-      </a>
-      <a class="waves-effect waves-light btn col s5 offset-s2 action-btn">
-        ${texts.displayRight[this.lang]}
-      </a>
-    </div>`;
-
-    this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
-    this.setButtonsState([false, true, true, true]);
-
-    this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
-    this.actionButtons[1].addEventListener('click', this.handleReplayClick.bind(this));
+    this.containerDiv.innerHTML += '<div><button>test</button></div>';
 
     this.initGuiComponents();
   }
@@ -222,19 +182,18 @@ class Training {
   }
 
   updateAnswerSelects() {
-    console.log('test');
     this.answerSelects.forEach(function(select) {
-      select.options.length = 0;
-
       this.chords.forEach(function(chord) {
-        if(this.randScale.id == 1) { 
-          select.options.add(new Option(chord.majorRoman, chord.id));
+        let option = document.createElement('option');
+        if(this.randScale.id == 1) {
+          option.innerHTML = chord.majorRoman;
         } else {
-          select.options.add(new Option(chord.minorRoman, chord.id));
+          option.innerHTML = chord.minorRoman;
         }
+        option.value = chord.id;
+        select.appendChild(option);
       }.bind(this));
     }.bind(this));
-
   }
 
   handleNewQuestionClick() {
@@ -242,8 +201,6 @@ class Training {
     while(scaleNotes == null) {
       scaleNotes = this.generateScale();
     }
-
-    this.createGui();
 
     this.selectRandPhrase(scaleNotes);
     this.playQuestion();
@@ -254,6 +211,28 @@ class Training {
   handleReplayClick() {
     this.playQuestion();
     this.setButtonsState([true, false, false, true]);
+  }
+
+  handleCheckAnswerClick() {
+    console.log(this.randPhrase);
+
+    this.answers = [];
+    this.answerSelects.forEach(function(select) {
+      this.answers.push(select.value);
+    }.bind(this));
+    console.log(this.answers);
+
+    this.setButtonsState([false, true, true, false]);
+  }
+
+  handleSelectChange(evt) {
+    const select = evt.currentTarget;
+
+    this.answers = [];
+    this.answerSelects.forEach(function(select) {
+      this.answers.push(select.value);
+    }.bind(this));
+    console.log(this.answers);
   }
 }
 

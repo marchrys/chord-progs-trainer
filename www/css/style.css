@@ -7,6 +7,7 @@
     --screen-bg-color: #C7AC92;
     --main-bg-color: #A44A3F;
     --danger-color: red;
+    --green-color: green;
     background-color: var(--screen-bg-color);
     font-family: poppins;
     font-size: 17px;
