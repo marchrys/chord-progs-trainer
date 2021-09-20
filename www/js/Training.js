@@ -88,6 +88,18 @@ class Training {
       }.bind(this));
     }
 
+    this.containerDiv.innerHTML += `<div class="row feedbacks-row"></div>`;
+    const feedbacksRow = this.containerDiv.querySelector('.feedbacks-row');
+    //Ajout des div pour les retours
+    for(let i=1; i<=this.phraseChordsNum; i++) {
+      feedbacksRow.innerHTML +=
+        `<div class="feedback col s2 green-text text-darken-2">
+           <i class="fas fa-check"></i>
+        </div>`;
+    }
+    const feedbacks = document.querySelectorAll('.feedback');
+    feedbacks[0].classList.add('offset-s1');
+
     this.containerDiv.innerHTML +=
     `<div class="row buttons-row col s12 valign-wrapper">
       <a class="waves-effect waves-light btn col s5 action-btn">
@@ -112,7 +124,7 @@ class Training {
     this.setButtonsState([false, true, true, true]);
 
     this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
-    this.actionButtons[1].addEventListener('click', this.playQuestion.bind(this));
+    this.actionButtons[1].addEventListener('click', this.handleReplayClick.bind(this));
 
     this.initGuiComponents();
   }
@@ -236,7 +248,12 @@ class Training {
     this.selectRandPhrase(scaleNotes);
     this.playQuestion();
 
-    this.setButtonsState([false, false, false, true]);
+    this.setButtonsState([true, false, false, true]);
+  }
+
+  handleReplayClick() {
+    this.playQuestion();
+    this.setButtonsState([true, false, false, true]);
   }
 }
 
