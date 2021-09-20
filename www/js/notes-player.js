@@ -160,7 +160,6 @@ function playSound(buffer, time) {
     source.start(context.currentTime + time);
 
     soundSources.push(source);
-    console.log(soundSources.length);
 }
 
 function stopAllSounds() {
