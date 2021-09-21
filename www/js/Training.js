@@ -92,7 +92,7 @@ class Training {
     for(let i=1; i<=this.phraseChordsNum; i++) {
       const feedbackDiv = document.createElement("div");
       feedbackDiv.className = 'col s2 feedback';
-      feedbackDiv.innerHTML = '<i class="fas fa-check"></i>';
+      feedbackDiv.innerHTML = '&nbsp;';
       feedbacksRow.appendChild(feedbackDiv);
     }
     this.feedbacksDivs = feedbacksRow.querySelectorAll('.feedback');
@@ -132,6 +132,7 @@ class Training {
 
     this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
     this.actionButtons[1].addEventListener('click', this.handleReplayClick.bind(this));
+    this.actionButtons[2].addEventListener('click', this.handleCheckAnswerClick.bind(this));
   }
 
   setButtonsState(states) {
@@ -272,17 +273,21 @@ class Training {
     }.bind(this));
     console.log(this.answers);
 
+    this.randPhrase.forEach(function(chordId, index) {
+      if(this.answers[index] == chordId) {
+        this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--green-color');
+        this.feedbacksDivs[index].innerHTML = '<i class="fas fa-check"></i>';
+      } else {
+        this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--danger-color');
+        this.feedbacksDivs[index].innerHTML = '<i class="fas fa-times"></i>';
+      }
+    }.bind(this));
+
     this.setButtonsState([false, true, true, false]);
   }
 
   handleSelectChange(evt) {
-    const select = evt.currentTarget;
-
-    this.answers = [];
-    this.answerSelects.forEach(function(select) {
-      this.answers.push(select.value);
-    }.bind(this));
-    console.log(this.answers);
+     
   }
 }
 
