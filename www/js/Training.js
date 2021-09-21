@@ -63,6 +63,22 @@ class Training {
   createGui() {
     this.containerDiv.innerHTML = '';
 
+    const infosRow = document.createElement('div');
+    infosRow.className = 'row infos-row';
+    this.containerDiv.appendChild(infosRow);
+
+    for(let i=1; i<=2; i++) {
+      const infosDiv = document.createElement('div');
+      infosDiv.className = 'col s6 center-align';
+      infosDiv.innerHTML = 'test';
+      if(i == 1) {
+        infosDiv.id = 'levelInfo';
+      } else {
+        infosDiv.id = 'scoreInfo';
+      }
+      infosRow.appendChild(infosDiv);
+    }
+
     this.containerDiv.innerHTML += `<div class="row selects-row"></div>`;
     const selectsRow = this.containerDiv.querySelector('.selects-row');
 
@@ -265,13 +281,11 @@ class Training {
   }
 
   handleCheckAnswerClick() {
-    console.log(this.randPhrase);
 
     this.answers = [];
     this.answerSelects.forEach(function(select) {
       this.answers.push(select.value);
     }.bind(this));
-    console.log(this.answers);
 
     this.randPhrase.forEach(function(chordId, index) {
       if(this.answers[index] == chordId) {
