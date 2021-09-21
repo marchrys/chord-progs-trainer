@@ -67,26 +67,50 @@ class Training {
 
     for(let i=1; i<=this.phraseChordsNum; i++) {
     selectsRow.innerHTML +=
-      `<div class="input-field col s2">
+      `<div class="input-field select-container col s2">
         <select class="answer-select">
         </select>
         <label></label>
       </div>`;
     }
 
+    const selectContainers = document.querySelectorAll('.select-container');
     this.answerSelects = document.querySelectorAll('.answer-select');
-    
-    this.updateAnswerSelects();
-    
+    selectContainers[0].classList.add('offset-s1');
 
+    this.updateAnswerSelects();
+    this.initGuiComponents();
+    
     this.answerSelects.forEach(function(select) {
       select.addEventListener('change', this.handleSelectChange.bind(this));
     }.bind(this));
+
+    for(let i=1; i<=2; i++) {
+      const buttonsRow = document.createElement("div");
+      buttonsRow.className = 'row buttons-row';
+      // p.innerHTML = 'Nouvelle question';
+      this.containerDiv.appendChild(buttonsRow);
+    }
+    const buttonsRows = this.containerDiv.querySelectorAll('.buttons-row');
     
+    buttonsRows.forEach(function(row) {
+      for(let i=1; i<=2; i++) {
+        const actionBtn = document.createElement("a");
+        actionBtn.className = 'waves-effect waves-light btn col s5 action-btn';
+        actionBtn.innerHTML = 'test de très très long texte';
+        row.appendChild(actionBtn);
+      }
+    }.bind(this));
 
-    this.containerDiv.innerHTML += '<div><button>test</button></div>';
-
-    this.initGuiComponents();
+    this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
+    
+    //On décale les boutons de droite de deux colonnes
+    this.actionButtons.forEach(function(button,index) {
+      if(index % 2 !== 0) {
+        button.classList.add('offset-s2');
+        console.log(JSON.stringify(button.classList));
+      }
+    }.bind(this));
   }
 
   setButtonsState(states) {
