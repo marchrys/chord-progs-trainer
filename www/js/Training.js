@@ -4,13 +4,14 @@ class Training {
     this.containerDiv = document.getElementById('training');
     this.settings = settings;
     this.chords = [];
-    this.randScale = scales[1];
+    this.randScale = null;
     this.randPhrase = null;
     this.phraseChordsNum = 5;
     this.phraseNoteIds = [];
     this.answers = [];
     this.answerSelects = null;
     this.actionButtons = null;
+    this.feedbacksDivs = null;
 
     this.defineChords();
     //Au premier chargement, on affiche le preloader
@@ -78,16 +79,28 @@ class Training {
     this.answerSelects = document.querySelectorAll('.answer-select');
     selectContainers[0].classList.add('offset-s1');
 
-    this.updateAnswerSelects();
     this.initGuiComponents();
     
     this.answerSelects.forEach(function(select) {
       select.addEventListener('change', this.handleSelectChange.bind(this));
     }.bind(this));
 
+    const feedbacksRow = document.createElement("div");
+    feedbacksRow.className = 'row feedbacks-row';
+    this.containerDiv.appendChild(feedbacksRow);
+
+    for(let i=1; i<=this.phraseChordsNum; i++) {
+      const feedbackDiv = document.createElement("div");
+      feedbackDiv.className = 'col s2 feedback';
+      feedbackDiv.innerHTML = '<i class="fas fa-check"></i>';
+      feedbacksRow.appendChild(feedbackDiv);
+    }
+    this.feedbacksDivs = feedbacksRow.querySelectorAll('.feedback');
+    this.feedbacksDivs[0].classList.add('offset-s1');
+
     for(let i=1; i<=2; i++) {
       const buttonsRow = document.createElement("div");
-      buttonsRow.className = 'row buttons-row';
+      buttonsRow.className = 'row buttons-row valign-wrapper';
       // p.innerHTML = 'Nouvelle question';
       this.containerDiv.appendChild(buttonsRow);
     }
@@ -97,7 +110,7 @@ class Training {
       for(let i=1; i<=2; i++) {
         const actionBtn = document.createElement("a");
         actionBtn.className = 'waves-effect waves-light btn col s5 action-btn';
-        actionBtn.innerHTML = 'test de très très long texte';
+        actionBtn.innerHTML = 'test';
         row.appendChild(actionBtn);
       }
     }.bind(this));
@@ -111,6 +124,14 @@ class Training {
         console.log(JSON.stringify(button.classList));
       }
     }.bind(this));
+
+    const textProperties = ['newQuest', 'listenAgain', 'checkAns', 'displayRight'];
+    this.actionButtons.forEach(function(button, index) {
+      button.innerHTML = texts[textProperties[index]][this.lang];
+    }.bind(this));
+
+    this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
+    this.actionButtons[1].addEventListener('click', this.handleReplayClick.bind(this));
   }
 
   setButtonsState(states) {
@@ -207,6 +228,8 @@ class Training {
 
   updateAnswerSelects() {
     this.answerSelects.forEach(function(select) {
+      select.options.length = 0;
+
       this.chords.forEach(function(chord) {
         let option = document.createElement('option');
         if(this.randScale.id == 1) {
@@ -225,6 +248,9 @@ class Training {
     while(scaleNotes == null) {
       scaleNotes = this.generateScale();
     }
+
+    this.updateAnswerSelects();
+    this.initGuiComponents();
 
     this.selectRandPhrase(scaleNotes);
     this.playQuestion();
