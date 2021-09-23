@@ -12,6 +12,7 @@ class Training {
     this.answerSelects = null;
     this.actionButtons = null;
     this.feedbacksDivs = null;
+    this.scoreInfoDiv = null;
 
     this.defineChords();
     //Au premier chargement, on affiche le preloader
@@ -78,6 +79,11 @@ class Training {
       }
       infosRow.appendChild(infosDiv);
     }
+
+    const levelInfoDiv = this.containerDiv.querySelector('#levelInfo');
+    this.scoreInfoDiv = document.querySelector('#scoreInfo');
+
+    levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]}`; 
 
     this.containerDiv.innerHTML += `<div class="row selects-row"></div>`;
     const selectsRow = this.containerDiv.querySelector('.selects-row');
