@@ -2,6 +2,7 @@ class Training {
   constructor(lang, settings) {
     this.lang = lang;
     this.containerDiv = document.getElementById('training');
+
     this.settings = settings;
     this.chords = [];
     this.randScale = null;
@@ -9,22 +10,27 @@ class Training {
     this.phraseChordsNum = 5;
     this.phraseNoteIds = [];
     this.answers = [];
+
     this.answerSelects = null;
     this.actionButtons = null;
     this.feedbacksDivs = null;
-    this.scoreInfoDiv = null;
 
     this.questions = [];
     this.rightAnswers = [];
 
     this.defineChords();
+
+    this.preloader = this.containerDiv.querySelector('#preloader');
+    this.trainingScreen = this.containerDiv.querySelector('#training-screen');
+
+    this.checkSoundsLoad();
     //Au premier chargement, on affiche le preloader
-    if(this.containerDiv.innerHTML == '') {
-      this.displayPreloader();
-      this.checkSoundsLoad();
-    } else {
-      this.createGui();
-    }
+    // if(this.containerDiv.innerHTML == '') {
+    //   this.displayPreloader();
+    //   this.checkSoundsLoad();
+    // } else {
+    //   this.createGui();
+    // }
   }
 
   defineChords() {
@@ -48,10 +54,8 @@ class Training {
   checkSoundsLoad() {
     const soundsLoad = setInterval(function() {
       if(allSoundsLoaded) {
-        this.createGui();
-        // this.createElementNotes();
-        // this.setSelectedOptions();
-        // this.initSelects();
+          this.preloader.style.display = 'none';
+          this.trainingScreen.style.display = 'block';
         clearInterval(soundsLoad);
         return;
       }
@@ -86,8 +90,7 @@ class Training {
     const levelInfoDiv = this.containerDiv.querySelector('#levelInfo');
     this.scoreInfoDiv = document.querySelector('#scoreInfo');
 
-    levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]}`; 
-    this.displayScore();
+    levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]} `; 
 
     this.containerDiv.innerHTML += `<div class="row selects-row"></div>`;
     const selectsRow = this.containerDiv.querySelector('.selects-row');
@@ -106,10 +109,6 @@ class Training {
     selectContainers[0].classList.add('offset-s1');
 
     this.initGuiComponents();
-    
-    this.answerSelects.forEach(function(select) {
-      select.addEventListener('change', this.handleSelectChange.bind(this));
-    }.bind(this));
 
     const feedbacksRow = document.createElement("div");
     feedbacksRow.className = 'row feedbacks-row';
@@ -313,21 +312,14 @@ class Training {
     this.setButtonsState([false, true, true, false]);
   }
 
-  handleSelectChange(evt) {
-     
-  }
-
   displayScore() {
     const questionsByLevel = this.questions.filter(question => question.levelId == this.settings.selectedLevel.id);
     const rightAnswersByLevel = this.rightAnswers.filter(answer => answer.levelId == this.settings.selectedLevel.id);
+ 
+    console.log(this.scoreInfoDiv.outerHTML);
 
-    this.questions.forEach(function(question) {
-      console.log(question.levelId == this.settings.selectedLevel.id);
-      console.log(questionsByLevel.length);
-    }.bind(this));
-    
-
-    this.scoreInfoDiv.innerHTML = 'Score:' + questionsByLevel.length;
+    this.scoreInfoDiv.innerHTML += ' testos';
+    console.log(this.scoreInfoDiv.outerHTML);
   }
 
   initFeedback() {

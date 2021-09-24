@@ -13,9 +13,17 @@
     font-size: 17px;
 }
 
+#training-screen {
+  display: none;
+}
+
 .nav-content, a.btn, div.collapsible-header{
     background-color: var(--main-bg-color);
     color: white;
+}
+
+.btn-left {
+  margin-left: 0px !important;
 }
 
 a.action-btn {
