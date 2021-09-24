@@ -14,6 +14,9 @@ class Training {
     this.feedbacksDivs = null;
     this.scoreInfoDiv = null;
 
+    this.questions = [];
+    this.rightAnswers = [];
+
     this.defineChords();
     //Au premier chargement, on affiche le preloader
     if(this.containerDiv.innerHTML == '') {
@@ -71,7 +74,7 @@ class Training {
     for(let i=1; i<=2; i++) {
       const infosDiv = document.createElement('div');
       infosDiv.className = 'col s6 center-align';
-      infosDiv.innerHTML = 'test';
+      infosDiv.innerHTML = '';
       if(i == 1) {
         infosDiv.id = 'levelInfo';
       } else {
@@ -84,6 +87,7 @@ class Training {
     this.scoreInfoDiv = document.querySelector('#scoreInfo');
 
     levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]}`; 
+    this.displayScore();
 
     this.containerDiv.innerHTML += `<div class="row selects-row"></div>`;
     const selectsRow = this.containerDiv.querySelector('.selects-row');
@@ -143,7 +147,6 @@ class Training {
     this.actionButtons.forEach(function(button,index) {
       if(index % 2 !== 0) {
         button.classList.add('offset-s2');
-        console.log(JSON.stringify(button.classList));
       }
     }.bind(this));
 
@@ -274,9 +277,11 @@ class Training {
 
     this.updateAnswerSelects();
     this.initGuiComponents();
+    this.initFeedback();
 
     this.selectRandPhrase(scaleNotes);
     this.playQuestion();
+    this.updateQuestionsStats();
 
     this.setButtonsState([true, false, false, true]);
   }
@@ -296,6 +301,7 @@ class Training {
     this.randPhrase.forEach(function(chordId, index) {
       if(this.answers[index] == chordId) {
         this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--green-color');
+        this.updateRightAnswersStats(this.answers[index]);
         this.feedbacksDivs[index].innerHTML = '<i class="fas fa-check"></i>';
       } else {
         this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--danger-color');
@@ -308,6 +314,37 @@ class Training {
 
   handleSelectChange(evt) {
      
+  }
+
+  displayScore() {
+    console.log('ok');
+    this.scoreInfoDiv.innerHTML = 'Score: 0 / 0 (0%)';
+  }
+
+  initFeedback() {
+    this.feedbacksDivs.forEach(function(div) {
+      div.innerHTML = '&nbsp;';
+    });
+  }
+
+  updateQuestionsStats() {
+    this.randPhrase.forEach(function(chordId) {
+      this.questions.push(
+        {
+          chordId: chordId,
+          levelId: this.settings.selectedLevel.id,
+        }
+      );
+    }.bind(this));
+  } 
+
+  updateRightAnswersStats(chordId) {
+    this.rightAnswers.push(
+      {
+        chordId: chordId,
+        levelId: this.settings.selectedLevel.id,
+      }
+    );
   }
 }
 
