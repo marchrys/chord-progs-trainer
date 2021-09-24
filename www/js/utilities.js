@@ -7,5 +7,17 @@ class Utilities {
 
     return randItem;
   }
+
+  static getPercentage(firstNum, secondNum) {
+    let percentage;
+
+    if(secondNum == 0) {
+      percentage = 0;
+    } else {
+      percentage = (firstNum * 100) / secondNum;
+    }
+
+    return percentage;
+  }
 }
 

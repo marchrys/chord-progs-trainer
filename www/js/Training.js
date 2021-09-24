@@ -282,6 +282,7 @@ class Training {
     this.selectRandPhrase(scaleNotes);
     this.playQuestion();
     this.updateQuestionsStats();
+    this.displayScore();
 
     this.setButtonsState([true, false, false, true]);
   }
@@ -317,8 +318,16 @@ class Training {
   }
 
   displayScore() {
-    console.log('ok');
-    this.scoreInfoDiv.innerHTML = 'Score: 0 / 0 (0%)';
+    const questionsByLevel = this.questions.filter(question => question.levelId == this.settings.selectedLevel.id);
+    const rightAnswersByLevel = this.rightAnswers.filter(answer => answer.levelId == this.settings.selectedLevel.id);
+
+    this.questions.forEach(function(question) {
+      console.log(question.levelId == this.settings.selectedLevel.id);
+      console.log(questionsByLevel.length);
+    }.bind(this));
+    
+
+    this.scoreInfoDiv.innerHTML = 'Score:' + questionsByLevel.length;
   }
 
   initFeedback() {
