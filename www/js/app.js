@@ -30,10 +30,15 @@ let app = {
       const training = new Training(app.lang, settings);
 
       // Création d'un nouvel objet Training sur le click sur la première tab
-      // const tabs = document.querySelectorAll('.tab');
-      // tabs[0].addEventListener('click', function() {
-      //   const training = new Training(app.lang, settings);
-      // });
+      const tabs = document.querySelectorAll('.tab');
+      tabs[0].addEventListener('click', function() {
+        training.displayLevel();
+         training.clearSelects();
+         training.initGuiComponents();
+         training.setButtonsState([false, true, true, true]);
+         training.displayScore();
+         training.initFeedback();
+      });
 
       let elem = document.querySelector('.tabs'); 
       let instance = M.Tabs.init(elem, {});

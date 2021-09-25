@@ -23,6 +23,24 @@ class Training {
     this.preloader = this.containerDiv.querySelector('#preloader');
     this.trainingScreen = this.containerDiv.querySelector('#training-screen');
 
+    this.levelInfoDiv = this.containerDiv.querySelector('#level-info');
+    this.scoreInfoDiv = this.containerDiv.querySelector('#score-info');
+    this.answerSelects = this.containerDiv.querySelectorAll('.answer-select');
+    this.feedbacksDivs = this.containerDiv.querySelectorAll('.feedback');
+    this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
+    
+    this.levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]} `;
+
+    const textProperties = ['newQuest', 'listenAgain', 'checkAns', 'displayRight'];
+    this.actionButtons.forEach(function(button, index) {
+      button.innerHTML = texts[textProperties[index]][this.lang];
+    }.bind(this));
+
+    this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
+    this.actionButtons[1].addEventListener('click', this.handleReplayClick.bind(this));
+    this.actionButtons[2].addEventListener('click', this.handleCheckAnswerClick.bind(this));
+
+    this.displayScore();
     this.checkSoundsLoad();
     //Au premier chargement, on affiche le preloader
     // if(this.containerDiv.innerHTML == '') {
@@ -302,6 +320,7 @@ class Training {
       if(this.answers[index] == chordId) {
         this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--green-color');
         this.updateRightAnswersStats(this.answers[index]);
+        this.displayScore();
         this.feedbacksDivs[index].innerHTML = '<i class="fas fa-check"></i>';
       } else {
         this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--danger-color');
@@ -315,11 +334,10 @@ class Training {
   displayScore() {
     const questionsByLevel = this.questions.filter(question => question.levelId == this.settings.selectedLevel.id);
     const rightAnswersByLevel = this.rightAnswers.filter(answer => answer.levelId == this.settings.selectedLevel.id);
- 
-    console.log(this.scoreInfoDiv.outerHTML);
 
-    this.scoreInfoDiv.innerHTML += ' testos';
-    console.log(this.scoreInfoDiv.outerHTML);
+    const successPercentage = Utilities.getPercentage(rightAnswersByLevel.length, questionsByLevel.length);
+
+    this.scoreInfoDiv.innerHTML = ` Score: ${rightAnswersByLevel.length} / ${questionsByLevel.length} (${successPercentage}  %)`;
   }
 
   initFeedback() {
@@ -346,6 +364,16 @@ class Training {
         levelId: this.settings.selectedLevel.id,
       }
     );
+  }
+
+  clearSelects() {
+    this.answerSelects.forEach(function(select) {
+      select.options.length = 0;
+    }.bind(this));
+  }
+
+  displayLevel() {
+    this.levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]} `;
   }
 }
 

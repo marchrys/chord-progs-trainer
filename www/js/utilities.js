@@ -14,7 +14,7 @@ class Utilities {
     if(secondNum == 0) {
       percentage = 0;
     } else {
-      percentage = (firstNum * 100) / secondNum;
+      percentage = Math.round((firstNum * 100) / secondNum);
     }
 
     return percentage;
