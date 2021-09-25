@@ -36,7 +36,7 @@ class Settings {
 
   //On filtre les niveaux si la version est Lite
   loadLevelsByVersion() {
-    if(globalVars.version === 'Full') {
+    if(globalVars.version.id == 1) {
       this.levels = levels;
     } else {
       this.levels = levels.filter(level => level.inLite === true);

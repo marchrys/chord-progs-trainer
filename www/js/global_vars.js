@@ -1,4 +1,7 @@
 const globalVars = {
-  version: 'Full'
+  version: {
+      id: 1,
+      name: 'Full',
+    },
 };
 

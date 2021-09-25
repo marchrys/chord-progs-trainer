@@ -39,6 +39,9 @@ let app = {
          training.displayScore();
          training.initFeedback();
       });
+      tabs[1].addEventListener('click', function() {
+        stopAllSounds();
+      });
 
       let elem = document.querySelector('.tabs'); 
       let instance = M.Tabs.init(elem, {});

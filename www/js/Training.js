@@ -23,11 +23,14 @@ class Training {
     this.preloader = this.containerDiv.querySelector('#preloader');
     this.trainingScreen = this.containerDiv.querySelector('#training-screen');
 
+    this.preloadTextDiv = this.preloader.querySelector('#preload-text');
     this.levelInfoDiv = this.containerDiv.querySelector('#level-info');
     this.scoreInfoDiv = this.containerDiv.querySelector('#score-info');
     this.answerSelects = this.containerDiv.querySelectorAll('.answer-select');
     this.feedbacksDivs = this.containerDiv.querySelectorAll('.feedback');
     this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
+
+    this.preloadTextDiv.innerHTML = texts.preloader[this.lang];
     
     this.levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]} `;
 
@@ -39,8 +42,10 @@ class Training {
     this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
     this.actionButtons[1].addEventListener('click', this.handleReplayClick.bind(this));
     this.actionButtons[2].addEventListener('click', this.handleCheckAnswerClick.bind(this));
+    this.actionButtons[3].addEventListener('click', this.handleShowRightClick.bind(this));
 
     this.displayScore();
+    this.setButtonsState([false, true, true, true]);
     this.checkSoundsLoad();
     //Au premier chargement, on affiche le preloader
     // if(this.containerDiv.innerHTML == '') {
@@ -272,6 +277,12 @@ class Training {
   updateAnswerSelects() {
     this.answerSelects.forEach(function(select) {
       select.options.length = 0;
+      select.disabled = false;
+
+      let option = document.createElement('option');
+      option.innerHTML = '?';
+      option.value = 0;
+      select.appendChild(option);
 
       this.chords.forEach(function(chord) {
         let option = document.createElement('option');
@@ -310,7 +321,7 @@ class Training {
   }
 
   handleCheckAnswerClick() {
-
+    stopAllSounds();
     this.answers = [];
     this.answerSelects.forEach(function(select) {
       this.answers.push(select.value);
@@ -374,6 +385,18 @@ class Training {
 
   displayLevel() {
     this.levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]} `;
+  }
+
+  handleShowRightClick() {
+    this.initFeedback();
+
+    this.answerSelects.forEach(function(select, index) {
+      select.value = this.randPhrase[index];
+      select.disabled = true;
+    }.bind(this));
+    this.initGuiComponents();
+
+    this.setButtonsState([false, true, true, true]);
   }
 }
 
