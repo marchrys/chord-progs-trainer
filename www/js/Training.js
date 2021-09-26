@@ -30,6 +30,9 @@ class Training {
     this.feedbacksDivs = this.containerDiv.querySelectorAll('.feedback');
     this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
 
+    this.questionsKey = 'questions';
+    this.rightAnswersKey = 'right_answers';
+
     this.preloadTextDiv.innerHTML = texts.preloader[this.lang];
     
     this.levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]} `;
@@ -44,6 +47,7 @@ class Training {
     this.actionButtons[2].addEventListener('click', this.handleCheckAnswerClick.bind(this));
     this.actionButtons[3].addEventListener('click', this.handleShowRightClick.bind(this));
 
+    this.loadData();
     this.displayScore();
     this.setButtonsState([false, true, true, true]);
     this.checkSoundsLoad();
@@ -310,6 +314,7 @@ class Training {
     this.selectRandPhrase(scaleNotes);
     this.playQuestion();
     this.updateQuestionsStats();
+    this.saveData();
     this.displayScore();
 
     this.setButtonsState([true, false, false, true]);
@@ -331,6 +336,7 @@ class Training {
       if(this.answers[index] == chordId) {
         this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--green-color');
         this.updateRightAnswersStats(this.answers[index]);
+        this.saveData();
         this.displayScore();
         this.feedbacksDivs[index].innerHTML = '<i class="fas fa-check"></i>';
       } else {
@@ -397,6 +403,21 @@ class Training {
     this.initGuiComponents();
 
     this.setButtonsState([false, true, true, true]);
+  }
+
+  loadData() {
+    if (localStorage.getItem(this.questionsKey) !== null) {
+      this.questions = JSON.parse(localStorage.getItem(this.questionsKey));
+    }
+
+    if (localStorage.getItem(this.rightAnswersKey) !== null) {
+      this.rightAnswers = JSON.parse(localStorage.getItem(this.rightAnswersKey));
+    }
+  }
+
+  saveData() {
+    localStorage.setItem(this.questionsKey, JSON.stringify(this.questions));
+    localStorage.setItem(this.rightAnswersKey, JSON.stringify(this.rightAnswers));
   }
 }
 
