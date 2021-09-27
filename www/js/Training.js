@@ -49,6 +49,7 @@ class Training {
 
     this.loadData();
     this.displayScore();
+    this.initGuiComponents();
     this.setButtonsState([false, true, true, true]);
     this.checkSoundsLoad();
     //Au premier chargement, on affiche le preloader
@@ -93,6 +94,10 @@ class Training {
     //Initialisation des selects
     const elems = document.querySelectorAll('select');
     const instances = M.FormSelect.init(elems, {});
+
+    // Initialisation des tooltips
+    var tooltipElems = document.querySelectorAll('.tooltipped');
+    var tooltipInstances = M.Tooltip.init(tooltipElems, {});
   }
 
   createGui() {
@@ -354,7 +359,12 @@ class Training {
 
     const successPercentage = Utilities.getPercentage(rightAnswersByLevel.length, questionsByLevel.length);
 
-    this.scoreInfoDiv.innerHTML = ` Score: ${rightAnswersByLevel.length} / ${questionsByLevel.length} (${successPercentage}  %)`;
+    this.scoreInfoDiv.innerHTML = 
+    `Score: ${rightAnswersByLevel.length} / ${questionsByLevel.length} (${successPercentage}  %)
+    <a class="btn tooltipped" data-position="top" data-tooltip="${texts.scoreInfoTooltip[this.lang]}">
+      <i class="fas fa-info-circle"></i>
+    </a>
+    `;
   }
 
   initFeedback() {

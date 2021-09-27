@@ -34,9 +34,9 @@ let app = {
       tabs[0].addEventListener('click', function() {
         training.displayLevel();
          training.clearSelects();
-         training.initGuiComponents();
          training.setButtonsState([false, true, true, true]);
          training.displayScore();
+         training.initGuiComponents();
          training.initFeedback();
       });
       tabs[1].addEventListener('click', function() {
