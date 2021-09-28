@@ -9,8 +9,6 @@ class Stats {
     } else {
       this.levels = levels.filter(level => level.inLite == true);
     }
-
-    console.log(this.containerDiv.outerHTML);
   }
 }
 
