@@ -28,6 +28,7 @@ let app = {
 
       const settings = new Settings(app.lang);
       const training = new Training(app.lang, settings);
+      const stats = new Stats(app.lang, training);
 
       // Création d'un nouvel objet Training sur le click sur la première tab
       const tabs = document.querySelectorAll('.tab');

@@ -15,5 +15,13 @@ const screens = [
     },
     containerDiv: 'settings'
   },
+  {
+    id: 3,
+    title: {
+      en: 'Statistics',
+      fr: 'Statistiques'
+    },
+    containerDiv: 'stats'
+  },
 ];
 
