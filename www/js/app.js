@@ -45,6 +45,10 @@ let app = {
       tabs[1].addEventListener('click', function() {
         stopAllSounds();
       });
+      tabs[2].addEventListener('click', function() {
+        stats.loadData();
+        stats.fillStatsTable();
+      });
 
       let elem = document.querySelector('.tabs'); 
       let instance = M.Tabs.init(elem, {});

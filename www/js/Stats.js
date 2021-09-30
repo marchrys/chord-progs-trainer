@@ -60,9 +60,9 @@ class Stats {
 
     let deleteAllStatsButtonHTML = ``;
       if(this.questions.length > 0) {
-        deleteAllStatsButtonHTML = `<a class="waves-effect waves-light btn delete-all-stats-btn">
-                                    <i class="fas fa-trash-alt"></i>
-                                 </a>`;
+        deleteAllStatsButtonHTML = `<a class="waves-effect waves-light btn delete-all-stats-btn" data-levelid="-1">
+                                     <i class="fas fa-trash-alt"></i>
+                                   </a>`;
     }
 
     this.statsTbody.innerHTML += 
@@ -81,7 +81,9 @@ class Stats {
       }.bind(this));
 
       const deleteAllStatsButton = this.containerDiv.querySelector('.delete-all-stats-btn');
-      deleteAllStatsButton.addEventListener('click', this.deleteAllStats.bind(this));
+      if(deleteAllStatsButton !== null) {
+        deleteAllStatsButton.addEventListener('click', this.handleDeleteStatsClick.bind(this));
+      }
   }
 
   handleDeleteStatsClick(event) {
@@ -92,9 +94,27 @@ class Stats {
     const instance = M.Modal.init(statsModal, {});
 
     const deleteOkBtn = statsModal.querySelector('#delete-ok-btn');
+    deleteOkBtn.setAttribute('data-levelid', '');
     deleteOkBtn.setAttribute('data-levelid', levelId);
+    deleteOkBtn.addEventListener('click', this.deleteStats.bind(this));
 
     instance.open();
+  }
+
+  deleteStats(event) {
+    const button = event.currentTarget;
+    const levelId = button.dataset.levelid;
+    
+    if(levelId == -1) {
+      this.questions = [];
+      this.rightAnswers = [];
+    } else {
+      this.questions = this.questions.filter(question => question.levelId != levelId);
+      this.rightAnswers = this.rightAnswers.filter(answer => answer.levelId != levelId);
+    }
+
+    this.fillStatsTable();
+    this.saveData();
   }
 
   deleteStatsByLevel(event) {
