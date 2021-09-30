@@ -33,10 +33,12 @@ let app = {
       // Création d'un nouvel objet Training sur le click sur la première tab
       const tabs = document.querySelectorAll('.tab');
       tabs[0].addEventListener('click', function() {
-        training.displayLevel();
+         training.loadData();
+         training.displayLevel();
          training.clearSelects();
          training.setButtonsState([false, true, true, true]);
          training.displayScore();
+         training.updateAnswerSelects();
          training.initGuiComponents();
          training.initFeedback();
       });
