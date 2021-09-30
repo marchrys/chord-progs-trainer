@@ -30,6 +30,6 @@ const texts = {
   scoreInfoTooltip: {
     en: 'Here only the statistics of the selected level are displayed. For more options, click on the Statistics tab.',
     fr: 'Ici sont affichées uniquement les statistiques du niveau sélectionné. Pour plus d\'options, cliquez sur l\'onglet Statistiques.',
-  }
+  },
 };
 

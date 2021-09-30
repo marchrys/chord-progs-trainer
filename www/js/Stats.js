@@ -77,11 +77,24 @@ class Stats {
 
       const deleteStatsButtons = this.containerDiv.querySelectorAll('.delete-stats-btn');
       deleteStatsButtons.forEach(function(button) {
-        button.addEventListener('click', this.deleteStatsByLevel.bind(this));
+        button.addEventListener('click', this.handleDeleteStatsClick.bind(this));
       }.bind(this));
 
       const deleteAllStatsButton = this.containerDiv.querySelector('.delete-all-stats-btn');
       deleteAllStatsButton.addEventListener('click', this.deleteAllStats.bind(this));
+  }
+
+  handleDeleteStatsClick(event) {
+    const button = event.currentTarget;
+    const levelId = button.dataset.levelid;
+    
+    const statsModal = this.containerDiv.querySelector('#delete-stats-modal');
+    const instance = M.Modal.init(statsModal, {});
+
+    const deleteOkBtn = statsModal.querySelector('#delete-ok-btn');
+    deleteOkBtn.setAttribute('data-levelid', levelId);
+
+    instance.open();
   }
 
   deleteStatsByLevel(event) {
