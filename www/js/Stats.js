@@ -37,6 +37,14 @@ class Stats {
   fillStatsTable() {
     this.statsTbody.innerHTML = '';
 
+    const levelTh = this.containerDiv.querySelector('#level-th');
+    levelTh.innerHTML = texts.level[this.lang];
+    
+    const questionsTh = this.containerDiv.querySelector('#questions-th');
+    const rightAnsTh = this.containerDiv.querySelector('#right-ans-th');
+    const percentageTh = this.containerDiv.querySelector('#percentage-th');
+    const actionsTh = this.containerDiv.querySelector('#actions-th');
+
     this.levels.forEach(function(level, index) {
       const questionsByLevel = this.questions.filter(question => question.levelId == level.id);
       const rightAnswersByLevel = this.rightAnswers.filter(answer => answer.levelId == level.id);
