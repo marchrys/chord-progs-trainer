@@ -50,7 +50,6 @@ class Stats {
 
       this.statsTbody.innerHTML += `<tr>
           <td> ${level.order} </td>
-          <td> ${level.description[app.lang]} </td>
           <td> ${questionsByLevel.length} </td>
           <td> ${rightAnswersByLevel.length} </td>
           <td> ${Utilities.getPercentage(rightAnswersByLevel.length, questionsByLevel.length)}%</td>
@@ -67,7 +66,6 @@ class Stats {
 
     this.statsTbody.innerHTML += 
       `<tr>
-        <td></td>
         <td>Total</td>
         <td> ${this.questions.length} </td>
         <td> ${this.rightAnswers.length} </td>
