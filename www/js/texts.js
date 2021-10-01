@@ -31,5 +31,17 @@ const texts = {
     en: 'Here only the statistics of the selected level are displayed. For more options, click on the Statistics tab.',
     fr: 'Ici sont affichées uniquement les statistiques du niveau sélectionné. Pour plus d\'options, cliquez sur l\'onglet Statistiques.',
   },
+  resetStatsTitle: {
+    en: 'Reset statistics',
+    fr: 'Réinitialisation de statistiques',
+  },
+  resetLevelStatsMsg: {
+    en: 'Are you sure you want to reset statistics for level',
+    fr: 'Êtes-vous sûr(e) de vouloir réinitialiser les statistiques du niveau',
+  },
+  resetAllStatsMsg: {
+    en: 'Are you sure you want to reset all statistics?',
+    fr: 'Êtes-vous sûr(e) de vouloir réinitialiser toutes les statistiques?',
+  }
 };
 

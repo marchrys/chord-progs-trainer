@@ -93,10 +93,22 @@ class Stats {
     const statsModal = this.containerDiv.querySelector('#delete-stats-modal');
     const instance = M.Modal.init(statsModal, {});
 
+    const modalTitle = statsModal.querySelector('h4');
+    modalTitle.innerHTML = texts.resetStatsTitle[this.lang];
+    const modalTextDiv = statsModal.querySelector('.modal-text');
+
     const deleteOkBtn = statsModal.querySelector('#delete-ok-btn');
     deleteOkBtn.setAttribute('data-levelid', '');
     deleteOkBtn.setAttribute('data-levelid', levelId);
     deleteOkBtn.addEventListener('click', this.deleteStats.bind(this));
+
+    if(deleteOkBtn.dataset.levelid != -1) {
+      const level = levels.find(level => level.id == levelId);
+
+      modalTextDiv.innerHTML = `${texts.resetLevelStatsMsg[app.lang]} ${level.id}: ${level.description[this.lang]}?`;
+    } else {
+      modalTextDiv.innerHTML = texts.resetAllStatsMsg[this.lang];
+    }
 
     instance.open();
   }
