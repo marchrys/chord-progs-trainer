@@ -42,6 +42,26 @@ const texts = {
   resetAllStatsMsg: {
     en: 'Are you sure you want to reset all statistics?',
     fr: 'Êtes-vous sûr(e) de vouloir réinitialiser toutes les statistiques?',
-  }
+  },
+  questions: {
+    en: 'Questions',
+    fr: 'Questions',
+  },
+  rightAns: {
+    en: 'Right answers',
+    fr: 'Bonnes réponses',
+  },
+  successPercentage: {
+    en: 'Success percentage',
+    fr: 'Pourcentage de réussite',
+  },
+  actions: {
+    en: 'Actions',
+    fr: 'Actions',
+  },
+  sum: {
+    en: 'sum',
+    fr: 'Total',
+  },
 };
 

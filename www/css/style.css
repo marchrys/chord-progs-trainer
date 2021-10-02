@@ -73,5 +73,10 @@ div.input-field label {
   color: black;
 }
 
+/* On met en gras la ligne qui affiche le total des stats */
+#sum-tr{
+  font-weight: bold;
+}
+
  
 

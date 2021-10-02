@@ -41,9 +41,16 @@ class Stats {
     levelTh.innerHTML = texts.level[this.lang];
     
     const questionsTh = this.containerDiv.querySelector('#questions-th');
+    questionsTh.innerHTML = texts.questions[this.lang];
+
     const rightAnsTh = this.containerDiv.querySelector('#right-ans-th');
+    rightAnsTh.innerHTML = texts.rightAns[this.lang];
+
     const percentageTh = this.containerDiv.querySelector('#percentage-th');
+    percentageTh.innerHTML = texts.successPercentage[this.lang];
+
     const actionsTh = this.containerDiv.querySelector('#actions-th');
+    actionsTh.innerHTML = texts.actions[this.lang];
 
     this.levels.forEach(function(level, index) {
       const questionsByLevel = this.questions.filter(question => question.levelId == level.id);
@@ -57,13 +64,19 @@ class Stats {
       }
 
       this.statsTbody.innerHTML += `<tr>
-          <td> ${level.order} </td>
+          <td> 
+            ${level.order} 
+            <a class="btn tooltipped" data-position="top" data-tooltip="test">
+              <i class="fas fa-info-circle"></i>
+            </a>
+          </td>
           <td> ${questionsByLevel.length} </td>
           <td> ${rightAnswersByLevel.length} </td>
           <td> ${Utilities.getPercentage(rightAnswersByLevel.length, questionsByLevel.length)}%</td>
           <td>${deleteStatsButtonHTML}</td>
         </tr>`;
     }.bind(this));
+    this.initGuiComponents();
 
     let deleteAllStatsButtonHTML = ``;
       if(this.questions.length > 0) {
@@ -73,8 +86,8 @@ class Stats {
     }
 
     this.statsTbody.innerHTML += 
-      `<tr>
-        <td>Total</td>
+      `<tr id="sum-tr">
+        <td>${texts.sum[this.lang]}</td>
         <td> ${this.questions.length} </td>
         <td> ${this.rightAnswers.length} </td>
         <td> ${Utilities.getPercentage(this.rightAnswers.length, this.questions.length)}%</td>
@@ -152,6 +165,16 @@ class Stats {
 
     this.fillStatsTable();
     this.saveData();
+  }
+
+  initGuiComponents() {
+    //Initialisation des selects
+    const elems = document.querySelectorAll('select');
+    const instances = M.FormSelect.init(elems, {});
+
+    // Initialisation des tooltips
+    var tooltipElems = document.querySelectorAll('.tooltipped');
+    var tooltipInstances = M.Tooltip.init(tooltipElems, {});
   }
 }
 
