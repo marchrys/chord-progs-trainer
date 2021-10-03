@@ -38,6 +38,7 @@ let app = {
          training.clearSelects();
          training.setButtonsState([false, true, true, true]);
          training.displayScore();
+         training.updateAnswerselects();
          training.initGuiComponents();
          training.initFeedback();
       });
