@@ -350,6 +350,7 @@ class Training {
         this.feedbacksDivs[index].innerHTML = '<i class="fas fa-times"></i>';
       }
     }.bind(this));
+    this.initGuiComponents();
 
     this.setButtonsState([false, true, true, false]);
   }
