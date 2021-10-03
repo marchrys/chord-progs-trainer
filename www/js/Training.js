@@ -312,6 +312,7 @@ class Training {
       scaleNotes = this.generateScale();
     }
 
+    this.defineChords();
     this.updateAnswerSelects();
     this.initFeedback();
 

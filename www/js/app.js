@@ -38,7 +38,7 @@ let app = {
          training.clearSelects();
          training.setButtonsState([false, true, true, true]);
          training.displayScore();
-         training.updateAnswerselects();
+        //  training.updateAnswerselects();
          training.initGuiComponents();
          training.initFeedback();
       });
@@ -46,6 +46,7 @@ let app = {
         stopAllSounds();
       });
       tabs[2].addEventListener('click', function() {
+        stopAllSounds();
         stats.loadData();
         stats.fillStatsTable();
       });
