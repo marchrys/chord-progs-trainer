@@ -63,5 +63,9 @@ const texts = {
     en: 'sum',
     fr: 'Total',
   },
+  description: {
+    en: 'Description',
+    fr: 'Description',
+  },
 };
 

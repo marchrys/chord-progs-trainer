@@ -313,7 +313,6 @@ class Training {
     }
 
     this.updateAnswerSelects();
-    this.initGuiComponents();
     this.initFeedback();
 
     this.selectRandPhrase(scaleNotes);
@@ -321,6 +320,7 @@ class Training {
     this.updateQuestionsStats();
     this.saveData();
     this.displayScore();
+    this.initGuiComponents();
 
     this.setButtonsState([true, false, false, true]);
   }

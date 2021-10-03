@@ -2,8 +2,8 @@ const levels = [
   {
     id: 1,
     description: {
-      en: 'Tonic, subdominant and dominant',
-      fr: 'Tonique, sous-dominante et dominante'
+      en: 'I or i, IV or iv and V',
+      fr: 'I ou i, IV ou iv et V'
     },
     order: 1,
     inLite: true,
@@ -18,8 +18,8 @@ const levels = [
   {
     id: 2,
     description: {
-      en: 'Submediant',
-      fr: 'Sus-dominante'
+      en: 'vi or bVI',
+      fr: 'vi ou bVI'
     },
     order: 2,
     inLite: false,

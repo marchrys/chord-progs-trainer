@@ -39,6 +39,9 @@ class Stats {
 
     const levelTh = this.containerDiv.querySelector('#level-th');
     levelTh.innerHTML = texts.level[this.lang];
+
+    const descriptionTh = this.containerDiv.querySelector('#description-th');
+    descriptionTh.innerHTML = texts.description[this.lang];
     
     const questionsTh = this.containerDiv.querySelector('#questions-th');
     questionsTh.innerHTML = texts.questions[this.lang];
@@ -63,13 +66,10 @@ class Stats {
                                  </a>`;
       }
 
-      this.statsTbody.innerHTML += `<tr>
-          <td> 
-            ${level.order} 
-            <a class="btn tooltipped" data-position="top" data-tooltip="test">
-              <i class="fas fa-info-circle"></i>
-            </a>
-          </td>
+      this.statsTbody.innerHTML += 
+        `<tr>
+          <td>${level.order}</td>
+          <td>${level.description[this.lang]}</td>
           <td> ${questionsByLevel.length} </td>
           <td> ${rightAnswersByLevel.length} </td>
           <td> ${Utilities.getPercentage(rightAnswersByLevel.length, questionsByLevel.length)}%</td>
@@ -88,6 +88,7 @@ class Stats {
     this.statsTbody.innerHTML += 
       `<tr id="sum-tr">
         <td>${texts.sum[this.lang]}</td>
+        <td></td>
         <td> ${this.questions.length} </td>
         <td> ${this.rightAnswers.length} </td>
         <td> ${Utilities.getPercentage(this.rightAnswers.length, this.questions.length)}%</td>
@@ -110,9 +111,8 @@ class Stats {
     const levelId = button.dataset.levelid;
     
     const statsModal = this.containerDiv.querySelector('#delete-stats-modal');
-    const instance = M.Modal.init(statsModal, {});
 
-    const modalTitle = statsModal.querySelector('h4');
+    const modalTitle = statsModal.querySelector('h5');
     modalTitle.innerHTML = texts.resetStatsTitle[this.lang];
     const modalTextDiv = statsModal.querySelector('.modal-text');
 
@@ -126,8 +126,10 @@ class Stats {
 
       modalTextDiv.innerHTML = `${texts.resetLevelStatsMsg[app.lang]} ${level.id}: ${level.description[this.lang]}?`;
     } else {
-      modalTextDiv.innerHTML = texts.resetAllStatsMsg[this.lang];
+       modalTextDiv.innerHTML = texts.resetAllStatsMsg[this.lang];
     }
+
+    const instance = M.Modal.init(statsModal, {});
 
     instance.open();
   }
@@ -135,7 +137,7 @@ class Stats {
   deleteStats(event) {
     const button = event.currentTarget;
     const levelId = button.dataset.levelid;
-    
+    console.log(levelId);
     if(levelId == -1) {
       this.questions = [];
       this.rightAnswers = [];
