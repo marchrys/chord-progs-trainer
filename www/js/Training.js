@@ -68,7 +68,10 @@ class Training {
     //   }
     // }.bind(this));
 
-    this.chords = chords.filter(chord => this.settings.selectedLevel.chordIds.includes(chord.id));
+    this.chords = [];
+    this.settings.selectedLevel.chordIds.forEach(function(chordId) {
+      this.chords.push(chords.find(chord => chord.id == chordId));
+    }.bind(this));
   }
 
   displayPreloader() {

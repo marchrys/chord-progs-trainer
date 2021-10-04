@@ -72,5 +72,25 @@ const levels = [
     ],
     scaleTypeIds: [1],
   },
+  {
+    id: 5,
+    description: {
+      en: 'Vsus4',
+      fr: 'Vsus4'
+    },
+    order: 5,
+    inLite: false,
+    chordIds: [1, 2, 3, 4, 5, 8, 6],
+    phrases: [
+      [1, 4, 8, 5, 1],
+      [1, 4, 1, 8, 5], 
+      [1, 6, 4, 8, 5],
+      [1, 6, 2, 8, 5],
+      [1, 4, 2, 8, 5],
+      [1, 2, 8, 5, 1],
+      [1, 2, 8, 5, 6],
+    ],
+    scaleTypeIds: [1, 2],
+  },
 ];
 

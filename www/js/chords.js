@@ -35,5 +35,17 @@ const chords = [
     minorRoman: 'bVI',
     scaleDegrees: [6, 10, 15, 15]
   },
+  {
+    id: 7,
+    majorRoman: 'vii&deg;',
+    minorRoman: 'vii&deg;',
+    scaleDegrees: [7, 14, 16, 18]
+  },
+  {
+    id: 8,
+    majorRoman: 'Vsus4',
+    minorRoman: 'Vsus4',
+    scaleDegrees: [5, 12, 15, 16]
+  },
 ];
 
