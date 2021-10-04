@@ -80,7 +80,7 @@ const levels = [
     },
     order: 5,
     inLite: false,
-    chordIds: [1, 2, 3, 4, 5, 8, 6],
+    chordIds: [1, 2, 4, 5, 8, 6],
     phrases: [
       [1, 4, 8, 5, 1],
       [1, 4, 1, 8, 5], 
@@ -100,7 +100,7 @@ const levels = [
     },
     order: 6,
     inLite: false,
-    chordIds: [1, 2, 3, 4, 5, 9, 6],
+    chordIds: [1, 2, 4, 5, 9, 6],
     phrases: [
       [1, 4, 9, 1, 5],
       [1, 4, 1, 9, 1], 
@@ -120,7 +120,7 @@ const levels = [
     },
     order: 7,
     inLite: false,
-    chordIds: [1, 2, 3, 4, 5, 9, 10],
+    chordIds: [1, 2, 4, 5, 9, 6, 10],
     phrases: [
       [1, 10, 4, 2, 5],
       [1, 10, 4, 9, 1], 
@@ -129,6 +129,26 @@ const levels = [
       [1, 10, 2, 5, 6],
       [1, 5, 10, 4, 5],
       [1, 5, 10, 2, 5],
+    ],
+    scaleTypeIds: [1, 2],
+  },
+  {
+    id: 8,
+    description: {
+      en: 'ii7 or ii&oslash;7',
+      fr: 'ii7 ou ii&oslash;7'
+    },
+    order: 8,
+    inLite: false,
+    chordIds: [1, 11, 4, 5, 9, 6, 10],
+    phrases: [
+      [1, 10, 4, 11, 5],
+      [1, 10, 11, 9, 1], 
+      [1, 10, 11, 5, 6],
+      [1, 4, 11, 9, 1], 
+      [1, 4, 11, 5, 6],
+      [1, 9, 10, 11, 5],
+      [1, 11, 9, 1, 5],
     ],
     scaleTypeIds: [1, 2],
   },
