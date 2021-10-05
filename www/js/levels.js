@@ -152,5 +152,20 @@ const levels = [
     ],
     scaleTypeIds: [1, 2],
   },
+  {
+    id: 9,
+    description: {
+      en: 'V7/V',
+      fr: 'V7/V'
+    },
+    order: 9,
+    inLite: false,
+    chordIds: [1, 12, 4, 5, 6],
+    phrases: [
+      [1, 6, 4, 12, 5],
+     
+    ],
+    scaleTypeIds: [1, 2],
+  },
 ];
 

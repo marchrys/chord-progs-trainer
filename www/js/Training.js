@@ -249,7 +249,8 @@ class Training {
           chordNotes.push(scaleNotes[degree-1]);
         } else {
           const naturalNote = notes.find(note => note.id == scaleNotes[degree[0]-1].id);
-          console.log(JSON.stringify(naturalNote));
+          const alteredNote = notes.find(note => note.id == naturalNote.id + degree[1]);
+          chordNotes.push(alteredNote);
         }
       });
 
@@ -269,11 +270,10 @@ class Training {
   playQuestion() {
     const sounds = [
       null,
-      C2, null, Db2, Db2, null, D2, null, Eb2, Eb2, null, E2, E2, F2, F2, null, Gb2, Gb2, null, G2, null, Ab2, Ab2, null, A2, null, Bb2, Bb2, null, B2, B2, C3,
-      C3, null, Db3, Db3, null, D3, null, Eb3, Eb3, null, E3, E3, F3, F3, null, Gb3, Gb3, null, G3, null, Ab3, Ab3, null, A3, null, Bb3, Bb3, null, B3, B3, C4,
-      C4, null, Db4, Db4, null, D4, null, Eb4, Eb4, null, E4, E4, F4, F4, null, Gb4, Gb4, null, G4, null, Ab4, Ab4, null, A4, null, Bb4, Bb4, null, B4, B4, C5,
-      C5, null, Db5, Db5, null, D5, null, Eb5, Eb5, null, E5, E5, F5, F5, null,Gb5, Gb5, null, G5, null, Ab5, Ab5, null,
-      A5, null, Bb5, Bb5, null, B5, B5, C6,
+      C2, C2, Db2, Db2, D2, D2, D2, Eb2, Eb2, E2, E2, E2, F2, F2, F2, Gb2, Gb2, G2, G2, G2, Ab2, Ab2, A2, A2, A2, Bb2, Bb2, B2, B2, B2, C3,
+      C3, C3, Db3, Db3, D3, D3, D3, Eb3, Eb3, E3, E3, E3, F3, F3, F3, Gb3, Gb3, G3, G3, G3, Ab3, Ab3, A3, A3, A3, Bb3, Bb3, B3, B3, B3, C4,
+      C4, C4, Db4, Db4, D4, D4, D4, Eb4, Eb4, E4, E4, E4, F4, F4, F4, Gb4, Gb4, G4, G4, G4, Ab4, Ab4, A4, A4, A4, Bb4, Bb4, B4, B4, B4, C5,
+      C5, C5, Db5, Db5, D5, D5, D5, Eb5, Eb5, E5, E5, E5, F5, F5, F5,Gb5, Gb5, G5, G5, G5, Ab5, Ab5, A5, A5, A5, Bb5, Bb5, B5, B5, B5, C6,
       C6
     ];
 

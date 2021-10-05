@@ -8,6 +8,14 @@ const notes = [
      isRoot: true,
    },
    {
+     id: 2,
+     name: {
+       en: 'Dbb',
+       fr: 'Rébb',
+     },
+     isRoot: false,
+   },
+   {
      id: 3,
      name: {
        en: 'C#',
@@ -24,12 +32,28 @@ const notes = [
      isRoot: true,
    },
    {
+     id: 5,
+     name: {
+       en: 'Cx',
+       fr: 'Dox',
+     },
+     isRoot: false,
+   },
+   {
      id: 6,
      name: {
        en: 'D',
        fr: 'Ré',
      },
      isRoot: true,
+   },
+   {
+     id: 7,
+     name: {
+       en: 'Ebb',
+       fr: 'Mibb',
+     },
+     isRoot: false,
    },
    {
      id: 8,
@@ -46,6 +70,14 @@ const notes = [
        fr: 'Mib',
      },
      isRoot: true,
+   },
+   {
+     id: 10,
+     name: {
+       en: 'Dx',
+       fr: 'Réx',
+     },
+     isRoot: false,
    },
    {
      id: 11,
@@ -80,6 +112,14 @@ const notes = [
      isRoot: true,
    },
    {
+     id: 15,
+     name: {
+       en: 'Gbb',
+       fr: 'Solbb',
+     },
+     isRoot: false,
+   },
+   {
      id: 16,
      name: {
        en: 'F#',
@@ -96,12 +136,28 @@ const notes = [
      isRoot: true,
    },
    {
+     id: 18,
+     name: {
+       en: 'Fx',
+       fr: 'Fax',
+     },
+     isRoot: false,
+   },
+   {
      id: 19,
      name: {
        en: 'G',
        fr: 'Sol',
      },
      isRoot: true,
+   },
+   {
+     id: 20,
+     name: {
+       en: 'Abb',
+       fr: 'Labb',
+     },
+     isRoot: false,
    },
    {
      id: 21,
@@ -120,12 +176,28 @@ const notes = [
      isRoot: true,
    },
    {
+     id: 23,
+     name: {
+       en: 'Gx',
+       fr: 'Solx',
+     },
+     isRoot: false,
+   },
+   {
      id: 24,
      name: {
        en: 'A',
        fr: 'La',
      },
      isRoot: true,
+   },
+   {
+     id: 25,
+     name: {
+       en: 'Bbb',
+       fr: 'Sibb',
+     },
+     isRoot: false,
    },
    {
      id: 26,
@@ -142,6 +214,14 @@ const notes = [
        fr: 'Sib',
      },
      isRoot: true,
+   },
+   {
+     id: 28,
+     name: {
+       en: 'Ax',
+       fr: 'Lax',
+     },
+     isRoot: false,
    },
    {
      id: 29,
