@@ -245,7 +245,12 @@ class Training {
       const nextChord = chords.find(chord => chord.id == chordId);
       const chordNotes = [];
       nextChord.scaleDegrees.forEach(function(degree) {
-        chordNotes.push(scaleNotes[degree-1]);
+        if(Array.isArray(degree) == false) {
+          chordNotes.push(scaleNotes[degree-1]);
+        } else {
+          const naturalNote = notes.find(note => note.id == scaleNotes[degree[0]-1].id);
+          console.log(JSON.stringify(naturalNote));
+        }
       });
 
       phraseChords.push(chordNotes);
