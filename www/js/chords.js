@@ -71,5 +71,17 @@ const chords = [
     minorRoman: 'V7/V',
     scaleDegrees: [2, [11, 2], 15, 16]
   },
+  {
+    id: 13,
+    majorRoman: 'V7/vi',
+    minorRoman: 'V7/vi',
+    scaleDegrees: [3, [12, 2], 16, 17]
+  },
+  {
+    id: 14,
+    majorRoman: 'V7/ii',
+    minorRoman: 'V7/ii',
+    scaleDegrees: [6, 13, [15, 2], 19]
+  },
 ];
 
