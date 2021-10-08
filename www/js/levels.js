@@ -23,7 +23,7 @@ const levels = [
       fr: 'vi ou bVI'
     },
     order: 2,
-    inLite: false,
+    inLite: true,
     chordIds: [1, 4, 5, 6],
     phrases: [
       [1, 6, 4, 5, 1],
@@ -40,7 +40,7 @@ const levels = [
       fr: 'ii ou ii&deg;'
     },
     order: 3,
-    inLite: false,
+    inLite: true,
     chordIds: [1, 2, 4, 5, 6],
     phrases: [
       [1, 6, 4, 2, 5],

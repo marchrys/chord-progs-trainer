@@ -4,8 +4,8 @@
 }
 
 :root {
-    --screen-bg-color: #C7AC92;
-    --main-bg-color: #A44A3F;
+    --screen-bg-color: #FFDBB5;
+    --main-bg-color: #419D78;
     --danger-color: red;
     --green-color: green;
     background-color: var(--screen-bg-color);

@@ -16,7 +16,7 @@ let app = {
       }
 
       //On d辿finit le titre de l'appli
-      document.getElementById('app-title').textContent = texts.appTitle[app.lang];
+      document.getElementById('app-title').textContent = `${texts.appTitle[app.lang]} ${globalVars.version.name}`;
 
       screens.forEach(function(screen) {
         //On ajoute les tabs

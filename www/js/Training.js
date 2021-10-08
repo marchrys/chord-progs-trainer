@@ -207,7 +207,9 @@ class Training {
   generateScale() {
     const scaleNotes = [];
     let hasNullNote = false;
-    this.randScale = scales[Math.floor(Math.random()*this.settings.selectedLevel.scaleTypeIds.length)];
+    const scaleId = this.settings.selectedLevel.scaleTypeIds[Math.floor(Math.random()*this.settings.selectedLevel.scaleTypeIds.length)];
+    this.randScale = scales.find(scale => scale.id == scaleId);
+     
     const randTonic = notes[Math.floor(Math.random()*21)];
 
     scaleNotes.push(randTonic);
@@ -230,7 +232,7 @@ class Training {
           scaleNotes.push(newNote);
         }
       }
-
+       
       return scaleNotes;
     }
   }

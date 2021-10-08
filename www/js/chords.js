@@ -93,7 +93,7 @@ const chords = [
     id: 16,
     majorRoman: 'bII',
     minorRoman: 'bII',
-    scaleDegrees: [2, [13, -2], 16, 18]
+    scaleDegrees: [[2, -2], 13, [16, -2], 18]
   },
 ];
 
