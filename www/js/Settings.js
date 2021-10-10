@@ -41,6 +41,8 @@ class Settings {
     } else {
       this.levels = levels.filter(level => level.inLite === true);
     }
+
+    this.levels.sort(this.compareLevels);
   }
 
   loadLevelsIntoSelect() {
@@ -71,6 +73,16 @@ class Settings {
 
   getSelectedLevel() {
     return this.selectedLevel;
+  }
+
+  compareLevels( a, b ) {
+    if ( a.order < b.order ){
+      return -1;
+    }
+    if ( a.order > b.order ){
+      return 1;
+    }
+    return 0;
   }
 }
 

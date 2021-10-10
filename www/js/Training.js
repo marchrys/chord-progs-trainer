@@ -207,10 +207,12 @@ class Training {
   generateScale() {
     const scaleNotes = [];
     let hasNullNote = false;
+    
     const scaleId = this.settings.selectedLevel.scaleTypeIds[Math.floor(Math.random()*this.settings.selectedLevel.scaleTypeIds.length)];
     this.randScale = scales.find(scale => scale.id == scaleId);
-     
-    const randTonic = notes[Math.floor(Math.random()*21)];
+    
+    const possibleTonics = notes.filter(note => note.isRoot == true);
+    const randTonic = possibleTonics[Math.floor(Math.random()*possibleTonics.length)];
 
     scaleNotes.push(randTonic);
     for(let i=0; i<this.randScale.intervals.length; i++) {

@@ -213,8 +213,8 @@ const levels = [
   {
     id: 12,
     description: {
-      en: 'V7/IV or V7/iv',
-      fr: 'V7/IV ou V7/iv'
+      en: 'V7/IV',
+      fr: 'V7/IV'
     },
     order: 12,
     inLite: false,
@@ -226,7 +226,7 @@ const levels = [
       [1, 15, 4, 12, 5],
       [1, 15, 4, 1, 5],
     ],
-    scaleTypeIds: [1,2],
+    scaleTypeIds: [1],
   },
   {
     id: 13,
@@ -234,7 +234,7 @@ const levels = [
       en: 'bII',
       fr: 'bII'
     },
-    order: 13,
+    order: 14,
     inLite: false,
     chordIds: [1, 16, 4, 5, 6],
     phrases: [
@@ -243,6 +243,24 @@ const levels = [
       [1, 6, 16, 5, 6],
       [1, 4, 16, 5, 1],
       [1, 4, 16, 5, 6],
+    ],
+    scaleTypeIds: [2],
+  },
+  {
+    id: 14,
+    description: {
+      en: 'V7/iv',
+      fr: 'V7/iv'
+    },
+    order: 13,
+    inLite: false,
+    chordIds: [1, 17, 2, 12, 4, 5, 6],
+    phrases: [
+      [1, 17, 4, 5, 1],
+      [1, 17, 4, 5, 6], 
+      [1, 17, 4, 2, 5],
+      [1, 17, 4, 12, 5],
+      [1, 17, 4, 1, 5],
     ],
     scaleTypeIds: [2],
   },

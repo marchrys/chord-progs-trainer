@@ -95,5 +95,11 @@ const chords = [
     minorRoman: 'bII',
     scaleDegrees: [[2, -2], 13, [16, -2], 18]
   },
+  {
+    id: 17,
+    majorRoman: 'V7/IV',
+    minorRoman: 'V7/iv',
+    scaleDegrees: [1, [14, -2], 15, [17, 2]]
+  },
 ];
 
