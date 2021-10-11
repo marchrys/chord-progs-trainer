@@ -316,6 +316,9 @@ class Training {
         select.appendChild(option);
       }.bind(this));
     }.bind(this));
+
+    this.answerSelects[0].selectedIndex = 1;
+    this.answerSelects[0].disabled = true;
   }
 
   handleNewQuestionClick() {
@@ -351,15 +354,17 @@ class Training {
     }.bind(this));
 
     this.randPhrase.forEach(function(chordId, index) {
-      if(this.answers[index] == chordId) {
-        this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--green-color');
-        this.updateRightAnswersStats(this.answers[index]);
-        this.saveData();
-        this.displayScore();
-        this.feedbacksDivs[index].innerHTML = '<i class="fas fa-check"></i>';
-      } else {
-        this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--danger-color');
-        this.feedbacksDivs[index].innerHTML = '<i class="fas fa-times"></i>';
+      if(index > 0) {
+        if(this.answers[index] == chordId) {
+          this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--green-color');
+          this.updateRightAnswersStats(this.answers[index]);
+          this.saveData();
+          this.displayScore();
+          this.feedbacksDivs[index].innerHTML = '<i class="fas fa-check"></i>';
+        } else {
+          this.feedbacksDivs[index].style.color = getComputedStyle(this.feedbacksDivs[index]).getPropertyValue('--danger-color');
+          this.feedbacksDivs[index].innerHTML = '<i class="fas fa-times"></i>';
+        }
       }
     }.bind(this));
     this.initGuiComponents();
@@ -388,13 +393,15 @@ class Training {
   }
 
   updateQuestionsStats() {
-    this.randPhrase.forEach(function(chordId) {
-      this.questions.push(
-        {
-          chordId: chordId,
-          levelId: this.settings.selectedLevel.id,
-        }
-      );
+    this.randPhrase.forEach(function(chordId, index) {
+      if(index > 0) {
+        this.questions.push(
+          {
+            chordId: chordId,
+            levelId: this.settings.selectedLevel.id,
+          }
+        );
+      }
     }.bind(this));
   } 
 
