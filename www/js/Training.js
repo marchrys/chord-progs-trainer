@@ -366,6 +366,9 @@ class Training {
           this.feedbacksDivs[index].innerHTML = '<i class="fas fa-times"></i>';
         }
       }
+      else {
+        this.feedbacksDivs[index].innerHTML = '&nbsp;';
+      }
     }.bind(this));
     this.initGuiComponents();
 
