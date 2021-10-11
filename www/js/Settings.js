@@ -20,7 +20,7 @@ class Settings {
       `<div class="input-field col s12"> 
         <select class="level-select"> 
         </select> 
-        <label> ${texts.level['fr']} </label>
+        <label> ${texts.level[this.lang]} </label>
       </div>`;
 
       this.levelSelect = this.containerDiv.querySelector('.level-select');
