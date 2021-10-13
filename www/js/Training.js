@@ -12,6 +12,7 @@ class Training {
     this.answers = [];
 
     this.answerButtons = null;
+    this.answersSelect = null;
     this.answerSelects = null;
     this.actionButtons = null;
     this.feedbacksDivs = null;
@@ -27,7 +28,8 @@ class Training {
     this.preloadTextDiv = this.preloader.querySelector('#preload-text');
     this.levelInfoDiv = this.containerDiv.querySelector('#level-info');
     this.scoreInfoDiv = this.containerDiv.querySelector('#score-info');
-    this.answerButtons = this.containerDiv.querySelector('.answers-select');
+    this.answerButtons = this.containerDiv.querySelectorAll('.answer-btn');
+    this.answersSelect = this.containerDiv.querySelector('.answers-select');
     this.answerSelects = this.containerDiv.querySelectorAll('.answer-select');
     this.feedbacksDivs = this.containerDiv.querySelectorAll('.feedback');
     this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
@@ -42,6 +44,11 @@ class Training {
     const textProperties = ['newQuest', 'listenAgain', 'checkAns', 'displayRight'];
     this.actionButtons.forEach(function(button, index) {
       button.innerHTML = texts[textProperties[index]][this.lang];
+    }.bind(this));
+
+    this.answerButtons.forEach(function(button) {
+      button.addEventListener('click', this.handleAnswerButtonClick.bind(this));
+      button.classList.add('disabled');
     }.bind(this));
 
     this.actionButtons[0].addEventListener('click', this.handleNewQuestionClick.bind(this));
@@ -323,6 +330,21 @@ class Training {
     this.answerSelects[0].disabled = true;
   }
 
+  updateAnswersSelect() {
+    this.answersSelect.options.length = 0;
+
+    this.chords.forEach(function(chord) {
+    let option = document.createElement('option');
+    if(this.randScale.id == 1) {
+      option.innerHTML = chord.majorRoman;
+    } else {
+      option.innerHTML = chord.minorRoman;
+    }
+    option.value = chord.id;
+    this.answersSelect.appendChild(option);
+  }.bind(this));
+  }
+
   handleNewQuestionClick() {
     let scaleNotes = null;
     while(scaleNotes == null) {
@@ -330,6 +352,8 @@ class Training {
     }
 
     this.defineChords();
+    this.updateAnswersSelect();
+    this.setAnswerButtonsState(true);
     this.updateAnswerSelects();
     this.initFeedback();
 
@@ -454,6 +478,23 @@ class Training {
   saveData() {
     localStorage.setItem(this.questionsKey, JSON.stringify(this.questions));
     localStorage.setItem(this.rightAnswersKey, JSON.stringify(this.rightAnswers));
+  }
+
+  handleAnswerButtonClick(event) {
+    const button = event.currentTarget;
+    
+    button.setAttribute('data-answerid', this.answersSelect.value);
+    button.textContent = this.answersSelect.options[this.answersSelect.selectedIndex].text;
+  }
+
+  setAnswerButtonsState(state) {
+    this.answerButtons.forEach(function(button) {
+      if(state) {
+        button.classList.remove('disabled');
+      } else {
+        button.classList.add('disabled');
+      }
+    }.bind(this));
   }
 }
 
