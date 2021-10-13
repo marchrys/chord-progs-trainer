@@ -11,6 +11,7 @@ class Training {
     this.phraseNoteIds = [];
     this.answers = [];
 
+    this.answerButtons = null;
     this.answerSelects = null;
     this.actionButtons = null;
     this.feedbacksDivs = null;
@@ -26,6 +27,7 @@ class Training {
     this.preloadTextDiv = this.preloader.querySelector('#preload-text');
     this.levelInfoDiv = this.containerDiv.querySelector('#level-info');
     this.scoreInfoDiv = this.containerDiv.querySelector('#score-info');
+    this.answerButtons = this.containerDiv.querySelector('.answers-select');
     this.answerSelects = this.containerDiv.querySelectorAll('.answer-select');
     this.feedbacksDivs = this.containerDiv.querySelectorAll('.feedback');
     this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
