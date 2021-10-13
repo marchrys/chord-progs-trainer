@@ -10,7 +10,7 @@
     --green-color: green;
     background-color: var(--screen-bg-color);
     font-family: poppins;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 #training-screen {
@@ -33,7 +33,7 @@ a.action-btn {
 }
 
 .nav-title {
-  font-size: 1.8rem !important;
+  font-size: 1.4rem !important;
   padding: 15px !important;
 }
 
@@ -81,5 +81,10 @@ div.input-field label {
 .delete-stats-btn, .delete-all-stats-btn {
   background-color: var(--danger-color) !important;
 }
- 
 
+.answer-btn {
+  width: 16% !important;
+  margin: 2% !important;
+  font-size: 3.1vw !important;
+  text-transform: unset !important;
+}
