@@ -334,15 +334,15 @@ class Training {
     this.answersSelect.options.length = 0;
 
     this.chords.forEach(function(chord) {
-    let option = document.createElement('option');
-    if(this.randScale.id == 1) {
-      option.innerHTML = chord.majorRoman;
-    } else {
-      option.innerHTML = chord.minorRoman;
-    }
-    option.value = chord.id;
-    this.answersSelect.appendChild(option);
-  }.bind(this));
+      let option = document.createElement('option');
+      if(this.randScale.id == 1) {
+        option.innerHTML = chord.majorRoman;
+      } else {
+        option.innerHTML = chord.minorRoman;
+      }
+      option.value = chord.id;
+      this.answersSelect.appendChild(option);
+    }.bind(this));
   }
 
   handleNewQuestionClick() {
@@ -375,6 +375,13 @@ class Training {
   handleCheckAnswerClick() {
     stopAllSounds();
     this.answers = [];
+
+    // this.answerButtons.forEach(function(button) {
+    //   this.answers.push(button.dataset.answerid);
+    //   button.setAttribute('data-answerid', "0");
+    //   this.setAnswerButtonsState(false);
+    // });
+
     this.answerSelects.forEach(function(select) {
       this.answers.push(select.value);
     }.bind(this));
@@ -456,6 +463,15 @@ class Training {
   handleShowRightClick() {
     this.initFeedback();
 
+    // this.randPhrase.forEach(function(chordId, index) {
+    //   const chord = chords.find(chord => chord.id == chordId);
+    //   if(this.randScale.id == 1) {
+    //     this.answerButtons[index].textContent = chord.majorRoman;
+    //   } else {
+    //     this.answerButtons[index].textContent = chord.minorRoman;
+    //   }
+    // });
+
     this.answerSelects.forEach(function(select, index) {
       select.value = this.randPhrase[index];
       select.disabled = true;
@@ -488,9 +504,11 @@ class Training {
   }
 
   setAnswerButtonsState(state) {
-    this.answerButtons.forEach(function(button) {
+    this.answerButtons.forEach(function(button, index) {
       if(state) {
-        button.classList.remove('disabled');
+        if(index > 0) {
+          button.classList.remove('disabled');
+        }
       } else {
         button.classList.add('disabled');
       }
