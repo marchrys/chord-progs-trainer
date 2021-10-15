@@ -37,8 +37,12 @@ let app = {
          training.displayLevel();
          training.clearSelects();
          training.setButtonsState([false, true, true, true]);
+
+         training.clearAnswerSelect();
+         training.setAnswerButtonsState(false);
+         training.initAnswerButtons();
+
          training.displayScore();
-        //  training.updateAnswerselects();
          training.initGuiComponents();
          training.initFeedback();
       });

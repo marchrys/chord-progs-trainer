@@ -30,6 +30,7 @@ class Training {
     this.scoreInfoDiv = this.containerDiv.querySelector('#score-info');
     this.answerButtons = this.containerDiv.querySelectorAll('.answer-btn');
     this.answersSelect = this.containerDiv.querySelector('.answers-select');
+    this.answerSelectLabel = this.containerDiv.querySelector('#answer-select-label');
     this.answerSelects = this.containerDiv.querySelectorAll('.answer-select');
     this.feedbacksDivs = this.containerDiv.querySelectorAll('.feedback');
     this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
@@ -40,6 +41,8 @@ class Training {
     this.preloadTextDiv.innerHTML = texts.preloader[this.lang];
     
     this.levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]} `;
+
+    this.answerSelectLabel.textContent = texts.answerSelect[this.lang];
 
     const textProperties = ['newQuest', 'listenAgain', 'checkAns', 'displayRight'];
     this.actionButtons.forEach(function(button, index) {
@@ -304,32 +307,6 @@ class Training {
     }.bind(this));
   }
 
-  updateAnswerSelects() {
-    this.answerSelects.forEach(function(select) {
-      select.options.length = 0;
-      select.disabled = false;
-
-      let option = document.createElement('option');
-      option.innerHTML = '?';
-      option.value = 0;
-      select.appendChild(option);
-
-      this.chords.forEach(function(chord) {
-        let option = document.createElement('option');
-        if(this.randScale.id == 1) {
-          option.innerHTML = chord.majorRoman;
-        } else {
-          option.innerHTML = chord.minorRoman;
-        }
-        option.value = chord.id;
-        select.appendChild(option);
-      }.bind(this));
-    }.bind(this));
-
-    this.answerSelects[0].selectedIndex = 1;
-    this.answerSelects[0].disabled = true;
-  }
-
   updateAnswersSelect() {
     this.answersSelect.options.length = 0;
 
@@ -354,10 +331,11 @@ class Training {
     this.defineChords();
     this.updateAnswersSelect();
     this.setAnswerButtonsState(true);
-    this.updateAnswerSelects();
+    this.initAnswerButtons();
     this.initFeedback();
 
     this.selectRandPhrase(scaleNotes);
+    this.displayTonicChord();
     this.playQuestion();
     this.updateQuestionsStats();
     this.saveData();
@@ -376,15 +354,15 @@ class Training {
     stopAllSounds();
     this.answers = [];
 
-    // this.answerButtons.forEach(function(button) {
-    //   this.answers.push(button.dataset.answerid);
-    //   button.setAttribute('data-answerid', "0");
-    //   this.setAnswerButtonsState(false);
-    // });
-
-    this.answerSelects.forEach(function(select) {
-      this.answers.push(select.value);
+    this.answerButtons.forEach(function(button) {
+      this.answers.push(button.dataset.answerid);
+      button.setAttribute('data-answerid', "0");
+      this.setAnswerButtonsState(false);
     }.bind(this));
+
+    // this.answerSelects.forEach(function(select) {
+    //   this.answers.push(select.value);
+    // }.bind(this));
 
     this.randPhrase.forEach(function(chordId, index) {
       if(index > 0) {
@@ -456,6 +434,10 @@ class Training {
     }.bind(this));
   }
 
+  clearAnswerSelect() {
+    this.answersSelect.options.length = 0;
+  }
+
   displayLevel() {
     this.levelInfoDiv.innerHTML = ` ${texts.level[this.lang]} ${this.settings.selectedLevel.order} : ${this.settings.selectedLevel.description[this.lang]} `;
   }
@@ -463,20 +445,20 @@ class Training {
   handleShowRightClick() {
     this.initFeedback();
 
-    // this.randPhrase.forEach(function(chordId, index) {
-    //   const chord = chords.find(chord => chord.id == chordId);
-    //   if(this.randScale.id == 1) {
-    //     this.answerButtons[index].textContent = chord.majorRoman;
-    //   } else {
-    //     this.answerButtons[index].textContent = chord.minorRoman;
-    //   }
-    // });
-
-    this.answerSelects.forEach(function(select, index) {
-      select.value = this.randPhrase[index];
-      select.disabled = true;
+    this.randPhrase.forEach(function(chordId, index) {
+      const chord = chords.find(chord => chord.id == chordId);
+      if(this.randScale.id == 1) {
+        this.answerButtons[index].textContent = chord.majorRoman;
+      } else {
+        this.answerButtons[index].textContent = chord.minorRoman;
+      }
     }.bind(this));
-    this.initGuiComponents();
+
+    // this.answerSelects.forEach(function(select, index) {
+    //   select.value = this.randPhrase[index];
+    //   select.disabled = true;
+    // }.bind(this));
+    // this.initGuiComponents();
 
     this.setButtonsState([false, true, true, true]);
   }
@@ -512,6 +494,22 @@ class Training {
       } else {
         button.classList.add('disabled');
       }
+    }.bind(this));
+  }
+
+  displayTonicChord() {
+    const chord = chords.find(chord => chord.id == this.randPhrase[0]);
+    if(this.randScale.id == 1) {
+      this.answerButtons[0].textContent = chord.majorRoman;
+    } else {
+      this.answerButtons[0].textContent = chord.minorRoman;
+    }
+  }
+
+  initAnswerButtons() {
+    this.answerButtons.forEach(function(button) {
+      button.setAttribute('data-answerid', "0");
+      button.textContent = '?';
     }.bind(this));
   }
 }

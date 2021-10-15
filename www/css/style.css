@@ -83,8 +83,13 @@ div.input-field label {
 }
 
 .answer-btn {
-  width: 16% !important;
-  margin: 2% !important;
+  width: 18% !important;
+  margin: 1% !important;
   font-size: 3.1vw !important;
   text-transform: unset !important;
+}
+
+.feedback {
+  width: 18% !important;
+  margin: 1% !important;
 }

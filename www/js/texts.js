@@ -67,5 +67,9 @@ const texts = {
     en: 'Description',
     fr: 'Description',
   },
+  answerSelect: {
+    en: 'Please select an answer',
+    fr: 'Veuillez sélectionner une réponse'
+  }
 };
 
