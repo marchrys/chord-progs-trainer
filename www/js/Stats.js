@@ -60,7 +60,7 @@ class Stats {
       const rightAnswersByLevel = this.rightAnswers.filter(answer => answer.levelId == level.id);
 
       let deleteStatsButtonHTML = ``;
-      if(questionsByLevel.length > 0) {
+      if(questionsByLevel.length > 0 && globalVars.version.id == 1) {
         deleteStatsButtonHTML = `<a class="waves-effect waves-light btn delete-stats-btn" data-levelid="${level.id}">
                                     <i class="fas fa-trash-alt"></i>
                                  </a>`;
