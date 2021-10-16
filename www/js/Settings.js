@@ -8,6 +8,7 @@ class Settings {
     this.levelKey = 'selected_level';
 
     this.levels = levels;
+    this.levels.sort(this.compareLevels);
 
     // this.loadLevelsByVersion();
     this.selectedLevel = this.levels[0];
