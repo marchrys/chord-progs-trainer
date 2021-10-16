@@ -62,7 +62,19 @@ class Settings {
     const level = levels.find(level => level.id == this.levelSelect.value);
      
     if(globalVars.version.id == 0 && level.inLite == false) {
-      alert('prohibited!');
+
+      const levelsModal = this.containerDiv.querySelector('#prohibited-levels-modal');
+      const levelsModalHeader = levelsModal.querySelector('h5');
+      const levelsModalText = levelsModal.querySelector('.modal-text');
+      const levelsModalOkBtn = levelsModal.querySelector('a');
+
+      levelsModalHeader.innerHTML = texts.levelsModalHeaderText[this.lang];
+      levelsModalText.innerHTML = texts.levelsModalText[this.lang];
+      levelsModalOkBtn.innerHTML = texts.levelsModalOk[this.lang];
+      
+      const instance = M.Modal.init(levelsModal, {});
+      instance.open();
+
       this.levelSelect.value = this.selectedLevel.id;
       this.initGuiComponents();
     } else {

@@ -60,7 +60,7 @@ const texts = {
     fr: 'Actions',
   },
   sum: {
-    en: 'sum',
+    en: 'Sum',
     fr: 'Total',
   },
   description: {
@@ -70,6 +70,18 @@ const texts = {
   answerSelect: {
     en: 'Please select an answer',
     fr: 'Veuillez sélectionner une réponse'
+  },
+  levelsModalHeaderText: {
+    en: 'Level unavailable in Lite version',
+    fr: 'Niveau indisponible en version Lite'
+  },
+  levelsModalText: {
+    en: 'This level is available only in Pro version.',
+    fr: 'Ce niveau est disponible uniquement en version Pro.'
+  },
+  levelsModalOk: {
+    en: 'OK',
+    fr: 'OK'
   }
 };
 
