@@ -7,7 +7,9 @@ class Settings {
     this.selectedLevel = null;
     this.levelKey = 'selected_level';
 
-    this.loadLevelsByVersion();
+    this.levels = levels;
+
+    // this.loadLevelsByVersion();
     this.selectedLevel = this.levels[0];
     this.loadData();
     this.createGui();
@@ -57,8 +59,16 @@ class Settings {
   }
 
   handleLevelChange() {
-    this.selectedLevel = this.levels.find(level => level.id == this.levelSelect.value);
-    this.saveData();
+    const level = levels.find(level => level.id == this.levelSelect.value);
+     
+    if(globalVars.version.id == 0 && level.inLite == false) {
+      alert('prohibited!');
+      this.levelSelect.value = this.selectedLevel.id;
+      this.initGuiComponents();
+    } else {
+      this.selectedLevel = this.levels.find(level => level.id == this.levelSelect.value);
+      this.saveData();
+    }
   }
 
   loadData() {
