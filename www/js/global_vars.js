@@ -1,7 +1,8 @@
 const globalVars = {
   version: {
-      id: 0,
-      name: 'Lite',
+      id: 1,
+      name: 'Pro',
+      maxLitePlayings: 2
     },
 };
 

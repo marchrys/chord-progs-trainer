@@ -35,6 +35,8 @@ class Training {
     this.feedbacksDivs = this.containerDiv.querySelectorAll('.feedback');
     this.actionButtons = this.containerDiv.querySelectorAll('.action-btn');
 
+    this.playings = 0;
+
     this.questionsKey = 'questions';
     this.rightAnswersKey = 'right_answers';
 
@@ -328,6 +330,8 @@ class Training {
       scaleNotes = this.generateScale();
     }
 
+    this.playings = 1;
+
     this.defineChords();
     this.updateAnswersSelect();
     this.setAnswerButtonsState(true);
@@ -347,7 +351,15 @@ class Training {
 
   handleReplayClick() {
     this.playQuestion();
-    this.setButtonsState([true, false, false, true]);
+
+    this.playings++;
+
+    if(globalVars.version.id == 0 && this.playings == globalVars.version.maxLitePlayings) {
+      this.playings = 0;
+      this.setButtonsState([true, true, false, true]);
+    } else {
+      this.setButtonsState([true, false, false, true]);
+    }
   }
 
   handleCheckAnswerClick() {
