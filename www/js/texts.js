@@ -24,7 +24,7 @@ const texts = {
     fr: 'Corriger'
   },
   displayRight: {
-    en: 'display right answers',
+    en: 'Display right answers',
     fr: 'Afficher les bonnes réponses'
   },
   scoreInfoTooltip: {
