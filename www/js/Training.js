@@ -460,9 +460,9 @@ class Training {
     this.randPhrase.forEach(function(chordId, index) {
       const chord = chords.find(chord => chord.id == chordId);
       if(this.randScale.id == 1) {
-        this.answerButtons[index].textContent = chord.majorRoman;
+        this.answerButtons[index].innerHTML = chord.majorRoman;
       } else {
-        this.answerButtons[index].textContent = chord.minorRoman;
+        this.answerButtons[index].innerHTML = chord.minorRoman;
       }
     }.bind(this));
 
@@ -494,7 +494,7 @@ class Training {
     const button = event.currentTarget;
     
     button.setAttribute('data-answerid', this.answersSelect.value);
-    button.textContent = this.answersSelect.options[this.answersSelect.selectedIndex].text;
+    button.innerHTML = this.answersSelect.options[this.answersSelect.selectedIndex].text;
   }
 
   setAnswerButtonsState(state) {
