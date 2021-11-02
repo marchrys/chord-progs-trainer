@@ -117,9 +117,13 @@ class Stats {
     const modalTextDiv = statsModal.querySelector('.modal-text');
 
     const deleteOkBtn = statsModal.querySelector('#delete-ok-btn');
+    deleteOkBtn.innerHTML = texts.yes[app.lang];
     deleteOkBtn.setAttribute('data-levelid', '');
     deleteOkBtn.setAttribute('data-levelid', levelId);
     deleteOkBtn.addEventListener('click', this.deleteStats.bind(this));
+
+    const deleteNoBtn = statsModal.querySelector('#delete-no-btn');
+    deleteNoBtn.innerHTML = texts.no[app.lang];
 
     if(deleteOkBtn.dataset.levelid != -1) {
       const level = levels.find(level => level.id == levelId);

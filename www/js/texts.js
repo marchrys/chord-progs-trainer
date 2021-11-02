@@ -82,6 +82,14 @@ const texts = {
   levelsModalOk: {
     en: 'OK',
     fr: 'OK'
+  },
+  yes: {
+    en: 'Yes',
+    fr: 'Oui'
+  },
+  no: {
+    en: 'No',
+    fr: 'Non'
   }
 };
 
